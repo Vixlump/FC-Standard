@@ -1,0 +1,9 @@
+/# this is a comment I can place anywhere that is non stream relivent and it will be treated as whitespace
+*i
++output
+_line
+s#Hello World
+_ret
+i*
+*~~~
+s#active2
