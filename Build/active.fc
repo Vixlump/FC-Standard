@@ -1,5 +1,6 @@
 /# this is a comment I can place anywhere that is non stream relivent and it will be treated as whitespace
 *i
+@#assignment_point
 +output
 _line
 s#Hello World

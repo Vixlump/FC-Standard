@@ -23,9 +23,6 @@ void var_stream() {
         case COREFC("%")://abstract register
           abstract_register();
           break;
-        case COREFC("*@")://assignment point
-          assignment_point();
-          break;
         case COREFC("@*")://assignment wrap
           assignment_wrap();
           break;

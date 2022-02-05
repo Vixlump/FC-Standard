@@ -46,6 +46,13 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
       active_string.push_back(script_reinterpretor);
       active_script.push_back(active_string.size()-1);
       break;
+    case '@':
+      assignment new_assignment_point;
+      new_assignment_point.name = UIRN(script_reinterpretor.c_str(), strlen(script_reinterpretor.c_str()));
+      new_assignment_point.line = input;
+      active_assignments.push_back(new_assignment_point);
+      active_script.push_back(UIRN("", strlen("")));
+      break;
     case '/':
       active_script.push_back(UIRN("", strlen("")));
       break;
@@ -90,7 +97,7 @@ void load_codex(string input) {
   active_float.clear();
   active_double.clear();
   active_triple.clear();
-  
+  active_assignments.clear();
   line = phantom_line;
   convert_codex_to_hash();
 

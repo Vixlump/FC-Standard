@@ -15,6 +15,7 @@ thread_local uint32_t thread_label = 0;
 uint32_t adapted_threads = 1;
 uint32_t known_threads = 1;
 
+//anything you add here needs to get added to the patchwork.h load_codex and be cleared
 thread_local vector <string> script_reader;
 thread_local vector <uint32_t> active_script;
 thread_local vector <string> active_string;
@@ -26,6 +27,8 @@ thread_local vector <bool> active_bool;
 thread_local vector <float> active_float;
 thread_local vector <double> active_double;
 thread_local vector <long double> active_triple;
+struct assignment { uint32_t name; uint64_t line; };
+thread_local vector <assignment> active_assignments;
 
 
 
