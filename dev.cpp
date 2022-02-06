@@ -71,13 +71,14 @@ using namespace this_thread;
 
 //var x deps
 #include "var_x/p_t.h"
-#include "var_x/debug.h"
 #include "var_x/error.h"
+#include "var_x/debug.h"
 #include "var_x/asign.h"
 #include "var_x/cswap.h"
 #include "var_x/abreg.h"
 #include "var_x/v.h"
 #include "var_x/i.h"
+#include "var_x/r.h"
 #include "var_x/scan.h"
 
 int main(int argc, char *argv[]) {

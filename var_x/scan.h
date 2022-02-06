@@ -45,6 +45,7 @@ void scan_stream() {
       case COREFC("*e")://experimental stream
         break;
       case COREFC("*r")://reserved stream
+        reserved_stream();
         break;
       case COREFC("*i")://input stream
         input_stream();
