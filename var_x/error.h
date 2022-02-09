@@ -3,6 +3,7 @@ uint64_t deprications = 0;
 uint64_t error_level = 0;
 uint64_t error_cap = 0;
 string error_trace("S:");
+bool error_debug_mode = true;
 
 inline void terminate_all() {
   exit(42);
@@ -25,4 +26,5 @@ void error_stream() {
         terminate_all();
       }
     }
+    if (error_debug_mode==true) {cout<<"Error["<<error_trace<<"]"<<endl;}
 }

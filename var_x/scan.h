@@ -7,30 +7,37 @@ void scan_stream() {
     switch (active_script[line]) {
       //crutials
       case COREFC("*v")://variable stream
-        break;
+        goto escape_stream;
       case COREFC("*m")://math stream
-        break;
+        goto escape_stream;
       case COREFC("*c")://control stream
-        break;
+        control_stream();
+        goto escape_stream;
       case COREFC("*f")://functional stream
-        break;
+        goto escape_stream;
       case COREFC("f")://define function
-        break;
+        goto escape_stream;
       case COREFC("*t")://threading
-        break;
+        goto escape_stream;
       case COREFC("*x")://external stream
-        break;
+        goto escape_stream;
       //standard:
       case COREFC("?*")://sexit
         return;
       case COREFC("%")://abstract register
         abstract_register();
-        break;
+        goto escape_stream;
       case COREFC("@*")://assignment wrap
         assignment_wrap();
-        break;
+        goto escape_stream;
       case COREFC("~~~*")://uexit
+        goto escape_stream;
+      default:
         break;
+    }
+    //function checker will go here:
+    //**here**
+    switch (active_script[line]) {
       case COREFC("**")://debug point
         debug_point();
         break;
@@ -54,5 +61,7 @@ void scan_stream() {
         error_stream();
         break;
     }
+    escape_stream:
+      assignment_wrap();
   } while ((line+1 < active_script.size()) || (line == phantom_line));
 }

@@ -7,6 +7,8 @@ void channelswap_stream() {
       break;
     case COREFC(">*"):
       break;
+    case COREFC("+patch"):
+      break;
     case COREFC("+scan"):
       break;
     default:

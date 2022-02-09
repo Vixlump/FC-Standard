@@ -32,7 +32,12 @@ thread_local vector <long double> active_triple;
 struct assignment { uint32_t name; uint64_t line; };
 thread_local vector <assignment> active_assignments;
 
-
+inline uint64_t codex_get_assignment(uint32_t name) {
+  for (uint32_t i = 0; i < active_assignments.size(); i++) {
+    if (active_assignments[i].name==name) {return active_assignments[i].line;}
+  }
+  exit(42);
+}
 
 inline string codex_get_string(uint64_t input) {
   return active_string[input];

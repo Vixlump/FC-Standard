@@ -1,5 +1,6 @@
 /# this is a comment I can place anywhere that is non stream relivent and it will be treated as whitespace
 @#main
+~~~*
 *i
 +output
 _line
