@@ -124,6 +124,35 @@ inline void codex_store_triple(uint32_t name, triple value) {
 inline void codex_store_hash(uint32_t name, uint32_t value) {
   hash_var[name] = value;
 }
+//array types:
+inline void codex_store_string_array(uint32_t name, uint64_t pos, string value) {
+  string_var_array[name][pos] = value;
+}
+inline void codex_store_int64_array(uint32_t name, uint64_t pos, int64_t value) {
+  int64_var_array[name][pos] = value;
+}
+inline void codex_store_int32_array(uint32_t name, uint64_t pos, int32_t value) {
+  int32_var_array[name][pos] = value;
+}
+inline void codex_store_int16_array(uint32_t name, uint64_t pos, int16_t value) {
+  int16_var_array[name][pos] = value;
+}
+inline void codex_store_int8_array(uint32_t name, uint64_t pos, int8_t value) {
+  int8_var_array[name][pos] = value;
+}
+inline void codex_store_float_array(uint32_t name, uint64_t pos, float value) {
+  float_var_array[name][pos] = value;
+}
+inline void codex_store_double_array(uint32_t name, uint64_t pos, double value) {
+  double_var_array[name][pos] = value;
+}
+inline void codex_store_triple_array(uint32_t name, uint64_t pos, triple value) {
+  triple_var_array[name][pos] = value;
+}
+inline void codex_store_hash_array(uint32_t name, uint64_t pos, uint32_t value) {
+  hash_var_array[name][pos] = value;
+}
+
 //return variable:
 inline string codex_return_string(uint32_t name) {
   return string_var[name];
@@ -154,4 +183,35 @@ inline triple codex_return_triple(uint32_t name) {
 }
 inline uint32_t codex_return_hash(uint32_t name) {
   return hash_var[name];
+}
+//array types:
+inline string codex_return_string_array(uint32_t name, uint64_t pos) {
+  return string_var_array[name][pos];
+}
+inline int64_t codex_return_int64_array(uint32_t name, uint64_t pos) {
+  return int64_var_array[name][pos];
+}
+inline int32_t codex_return_int32_array(uint32_t name, uint64_t pos) {
+  return int32_var_array[name][pos];
+}
+inline int16_t codex_return_int16_array(uint32_t name, uint64_t pos) {
+  return int16_var_array[name][pos];
+}
+inline int8_t codex_return_int8_array(uint32_t name, uint64_t pos) {
+  return int8_var_array[name][pos];
+}
+inline bool codex_return_bool_array(uint32_t name, uint64_t pos) {
+  return bool_var_array[name][pos];
+}
+inline float codex_return_float_array(uint32_t name, uint64_t pos) {
+  return float_var_array[name][pos];
+}
+inline double codex_return_double_array(uint32_t name, uint64_t pos) {
+  return double_var_array[name][pos];
+}
+inline triple codex_return_triple_array(uint32_t name, uint64_t pos) {
+  return triple_var_array[name][pos];
+}
+inline uint32_t codex_return_hash_array(uint32_t name, uint64_t pos) {
+  return hash_var_array[name][pos];
 }

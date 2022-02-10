@@ -81,6 +81,7 @@ using namespace this_thread;
 #include "var_x/cswap.h"
 #include "var_x/abreg.h"
 #include "var_x/v.h"
+#include "var_x/m.h"
 #include "var_x/c.h"
 #include "var_x/i.h"
 #include "var_x/r.h"

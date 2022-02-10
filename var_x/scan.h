@@ -10,6 +10,7 @@ void scan_stream() {
         var_stream();
         goto escape_stream;
       case COREFC("*m")://math stream
+        math_stream();
         goto escape_stream;
       case COREFC("*c")://control stream
         control_stream();
