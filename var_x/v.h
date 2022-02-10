@@ -1,7 +1,5 @@
 #pragma once
-void var_create_string(uint32_t input_name, int64_t input_size);
-void var_store_string(uint32_t input_name, int64_t pos, uint32_t value);
-string var_request_string(uint32_t input_name, int64_t pos);
+void var_store_array();
 void var_store();
 
 void var_stream() {
@@ -52,26 +50,54 @@ void var_store() {
     switch(active_script[line]) {
       case COREFC("_int"):
       case COREFC("_int64"):
+        fc_getline();
+        codex_store_int64(active_script[line], codex_get_int64(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_int32"):
+        fc_getline();
+        codex_store_int32(active_script[line], codex_get_int32(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_int16"):
+        fc_getline();
+        codex_store_int16(active_script[line], codex_get_int16(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_int8"):
+        fc_getline();
+        codex_store_int8(active_script[line], codex_get_int8(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_double"):
+        fc_getline();
+        codex_store_double(active_script[line], codex_get_double(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_float"):
+        fc_getline();
+        codex_store_float(active_script[line], codex_get_float(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_triple"):
+        fc_getline();
+        codex_store_triple(active_script[line], codex_get_triple(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_bool"):
+        fc_getline();
+        codex_store_bool(active_script[line], codex_get_bool(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("string"):
+        fc_getline();
+        codex_store_string(active_script[line], codex_get_string(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_var"):
         break;
       case COREFC("_array"):
+        var_store_array();
         break;
       case COREFC("_ret"):
         return;
@@ -82,45 +108,57 @@ void var_store() {
   } loop;
 
 }
-
-void var_create_string(uint32_t input_name, int64_t input_size) {
-  fc_type_string input_type;
-  input_type.name = input_name;
-  if (input_size == 0) {
-
-  } else {
-    for (int64_t i = 0; i < input_size; i++) {
-      input_type.value.push_back("");
-    }
-  }
-  string_var.push_back(input_type);
-}
-void var_store_string(uint32_t input_name, int64_t pos, uint32_t value) {
-  for (int64_t i = 0; i < string_var.size(); i++) {
-    if (string_var[i].name == input_name) {
-      if (pos < string_var[i].value.size()) {
-        string_var[i].value[pos] = codex_get_string(value);
-        return;
-      } else {
-        var_create_string(input_name, pos+1);
-        string_var[i].value[pos] = codex_get_string(value);
-        return;
-      }
-    }
-  }
-  error_stream();
-}
-string var_request_string(uint32_t input_name, int64_t pos) {
-  for (uint64_t i = 0; i < string_var.size(); i++) {
-    if (string_var[i].name == input_name) {
-      if (pos < string_var[i].value.size()) {
-        return string_var[i].value[pos];
-      } else {
+void var_store_array() {
+  fc_getline();
+  switch (active_script[line]) {
+      case COREFC("_int"):
+      case COREFC("_int64"):
+        fc_getline();
+        codex_store_int64(active_script[line], codex_get_int64(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_int32"):
+        fc_getline();
+        codex_store_int32(active_script[line], codex_get_int32(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_int16"):
+        fc_getline();
+        codex_store_int16(active_script[line], codex_get_int16(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_int8"):
+        fc_getline();
+        codex_store_int8(active_script[line], codex_get_int8(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_double"):
+        fc_getline();
+        codex_store_double(active_script[line], codex_get_double(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_float"):
+        fc_getline();
+        codex_store_float(active_script[line], codex_get_float(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_triple"):
+        fc_getline();
+        codex_store_triple(active_script[line], codex_get_triple(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("_bool"):
+        fc_getline();
+        codex_store_bool(active_script[line], codex_get_bool(active_script[line+1]));
+        fc_getline();
+        break;
+      case COREFC("string"):
+        fc_getline();
+        codex_store_string(active_script[line], codex_get_string(active_script[line+1]));
+        fc_getline();
+        break;
+      default:
         error_stream();
-        return "";
-      }
-    }
+        break;
   }
-  error_stream();
-  return "";
 }

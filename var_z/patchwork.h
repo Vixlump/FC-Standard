@@ -56,6 +56,9 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
     case '~'://escaped hash can be used to add functions to a program without changing the Codex ID
       active_script.push_back(COREFC(script_reinterpretor.c_str()));
       break;  
+    case '#':
+      active_script.push_back(atoi(script_reinterpretor.c_str()));
+      break;
     case '/'://notation
       active_script.push_back(COREFC(""));
       break;

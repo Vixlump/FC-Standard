@@ -1,5 +1,8 @@
 #pragma once
 
+//custom types
+typedef long double triple;
+
 string original_file_name = "active";
 const string defined_file_extention = ".fc";
 
@@ -28,7 +31,7 @@ thread_local vector <int8_t> active_int8;
 thread_local vector <bool> active_bool;
 thread_local vector <float> active_float;
 thread_local vector <double> active_double;
-thread_local vector <long double> active_triple;
+thread_local vector <triple> active_triple;
 struct assignment { uint32_t name; uint64_t line; };
 thread_local vector <assignment> active_assignments;
 
@@ -63,7 +66,7 @@ inline float codex_get_float(uint64_t input) {
 inline double codex_get_double(uint64_t input) {
   return active_double[input];
 }
-inline long double codex_get_triple(uint64_t input) {
+inline triple codex_get_triple(uint64_t input) {
   return active_triple[input];
 }
 
@@ -75,15 +78,80 @@ struct fc_type_int8 {uint32_t name;vector <int8_t> value;};
 struct fc_type_bool {uint32_t name;vector <bool> value;};
 struct fc_type_float {uint32_t name;vector <float> value;};
 struct fc_type_double {uint32_t name;vector <double> value;};
-struct fc_type_triple {uint32_t name;vector <long double> value;};
+struct fc_type_triple {uint32_t name;vector <triple> value;};
 struct fc_type_chart {uint32_t name;vector <ifstream> value;};
 struct fc_type_quantum {uint32_t name;vector <ofstream> value;};
-vector <fc_type_string> string_var;
-vector <fc_type_int64> int64_var;
-vector <fc_type_int32> int32_var;
-vector <fc_type_int16> int16_var;
-vector <fc_type_int8> int8_var;
-vector <fc_type_bool> bool_var;
-vector <fc_type_float> float_var;
-vector <fc_type_double> double_var;
-vector <fc_type_triple> triple_var;
+map <uint32_t, string> string_var;map <uint32_t, vector <string>> string_var_array;
+map <uint32_t, int64_t> int64_var;map <uint32_t, vector <int64_t>> int64_var_array;
+map <uint32_t, int32_t> int32_var;map <uint32_t, vector <int32_t>> int32_var_array;
+map <uint32_t, int16_t> int16_var;map <uint32_t, vector <int16_t>> int16_var_array;
+map <uint32_t, int8_t> int8_var;map <uint32_t, vector <int8_t>> int8_var_array;
+map <uint32_t, bool> bool_var;map <uint32_t, vector <bool>> bool_var_array;
+map <uint32_t, float> float_var;map <uint32_t, vector <float>> float_var_array;
+map <uint32_t, double> double_var;map <uint32_t, vector <double>> double_var_array;
+map <uint32_t, triple> triple_var;map <uint32_t, vector <triple>> triple_var_array;
+map <uint32_t, uint32_t> hash_var;map <uint32_t, vector <uint32_t>> hash_var_array;
+map <uint32_t, ifstream> chart_var;map <uint32_t, vector <ifstream>> chart_var_array;
+map <uint32_t, ofstream> quantum_var;map <uint32_t, vector <ofstream>> quantum_var_array;
+//store variable:
+inline void codex_store_string(uint32_t name, string value) {
+  string_var[name] = value;
+}
+inline void codex_store_int64(uint32_t name, int64_t value) {
+  int64_var[name] = value;
+}
+inline void codex_store_int32(uint32_t name, int32_t value) {
+  int32_var[name] = value;
+}
+inline void codex_store_int16(uint32_t name, int16_t value) {
+  int16_var[name] = value;
+}
+inline void codex_store_int8(uint32_t name, int8_t value) {
+  int8_var[name] = value;
+}
+inline void codex_store_bool(uint32_t name, bool value) {
+  bool_var[name] = value;
+}
+inline void codex_store_float(uint32_t name, float value) {
+  float_var[name] = value;
+}
+inline void codex_store_double(uint32_t name, double value) {
+  double_var[name] = value;
+}
+inline void codex_store_triple(uint32_t name, triple value) {
+  triple_var[name] = value;
+}
+inline void codex_store_hash(uint32_t name, uint32_t value) {
+  hash_var[name] = value;
+}
+//return variable:
+inline string codex_return_string(uint32_t name) {
+  return string_var[name];
+}
+inline int64_t codex_return_int64(uint32_t name) {
+  return int64_var[name];
+}
+inline int32_t codex_return_int32(uint32_t name) {
+  return int32_var[name];
+}
+inline int16_t codex_return_int16(uint32_t name) {
+  return int16_var[name];
+}
+inline int8_t codex_return_int8(uint32_t name) {
+  return int8_var[name];
+}
+inline bool codex_return_bool(uint32_t name) {
+  return bool_var[name];
+}
+inline float codex_return_float(uint32_t name) {
+  return float_var[name];
+}
+inline double codex_return_double(uint32_t name) {
+  return double_var[name];
+}
+inline triple codex_return_triple(uint32_t name) {
+  return triple_var[name];
+}
+inline uint32_t codex_return_hash(uint32_t name) {
+  return hash_var[name];
+}

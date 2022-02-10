@@ -36,6 +36,7 @@ support@lumpology.com
 #include <string>
 #include <memory>
 #include <new>
+#include <map>
 //#include <cctype>
 
 //math control
@@ -63,6 +64,7 @@ using namespace this_thread;
 //pre var deps
 
 //var z deps
+//#include "var_z/int128.h"
 #include "var_z/hash.h"
 #include "var_z/codex.h"
 #include "var_z/patchwork.h"
@@ -75,6 +77,7 @@ using namespace this_thread;
 #include "var_x/error.h"
 #include "var_x/debug.h"
 #include "var_x/asign.h"
+#include "var_x/valuesystem.h"
 #include "var_x/cswap.h"
 #include "var_x/abreg.h"
 #include "var_x/v.h"

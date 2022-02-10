@@ -1,11 +1,18 @@
 /# this is a comment I can place anywhere that is non stream relivent and it will be treated as whitespace
 @#main
 ~~~*
+*v
++store
+_int
+test
+n#42
+_ret
+v*
 *i
 +output
-_line
-s#Hello World
+_var
+_int
+test
+_break
 _ret
 i*
-*~~~
-s#active2

@@ -7,6 +7,7 @@ void scan_stream() {
     switch (active_script[line]) {
       //crutials
       case COREFC("*v")://variable stream
+        var_stream();
         goto escape_stream;
       case COREFC("*m")://math stream
         goto escape_stream;
