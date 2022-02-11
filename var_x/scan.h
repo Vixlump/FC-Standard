@@ -17,11 +17,12 @@ void scan_stream() {
         goto escape_stream;
       case COREFC("*f")://functional stream
         goto escape_stream;
-      case COREFC("f")://define function
-        goto escape_stream;
       case COREFC("*t")://threading
         goto escape_stream;
       case COREFC("*x")://external stream
+        goto escape_stream;
+      case COREFC("f")://define function
+        fc_function_create();
         goto escape_stream;
       //standard:
       case COREFC("?*")://sexit
@@ -37,8 +38,8 @@ void scan_stream() {
       default:
         break;
     }
-    //function checker will go here:
-    //**here**
+    //function checkerhere:
+    if (fc_function_check()==true) {goto escape_stream;}
     switch (active_script[line]) {
       case COREFC("**")://debug point
         debug_point();

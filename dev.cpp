@@ -70,10 +70,11 @@ using namespace this_thread;
 #include "var_z/patchwork.h"
 
 //var y deps
+#include "var_y/p_t.h"
 #include "var_y/livepatch.h"
+#include "var_y/function_driver.h"
 
 //var x deps
-#include "var_x/p_t.h"
 #include "var_x/error.h"
 #include "var_x/debug.h"
 #include "var_x/asign.h"

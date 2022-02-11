@@ -59,11 +59,15 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
     case '#':
       active_script.push_back(atoi(script_reinterpretor.c_str()));
       break;
+    case '*':
+    case '0'://largest possible uint32_t to ensure namespace is never taken
+      active_script.push_back(numeric_limits<uint32_t>::max());
+      break;
     case '/'://notation
       active_script.push_back(COREFC(""));
       break;
     default:
-      cout<<"Syntax Error Codex Could Not Be Compiled[N="<<file_name<<" L="<<input<<"]"<<endl;
+      cout<<"Syntax Error Codex Could Not Be Compiled[N="<<file_name<<" L="<<input+1<<"]"<<endl;
       exit(42);
       break;
   }
@@ -72,6 +76,7 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
 void convert_codex_to_hash() {
   constexpr uint8_t hash_location = 1;
   for (uint64_t i = 0; i < script_reader.size(); i++) {
+    //cout<<"HashBook["<<script_reader[i]<<"]"<<i<<endl;//this line is for codex debugging
     switch (script_reader[i][hash_location]) {
       case '#':
         convert_codex_to_hash_var(i, hash_location);
@@ -79,6 +84,12 @@ void convert_codex_to_hash() {
       default:
         codex_id+=COREFC(script_reader[i].c_str());
         active_script.push_back(COREFC(script_reader[i].c_str()));
+        if (script_reader[i]=="f") {
+          i++;
+          script_reader[i] = "*"+script_reader[i];
+          codex_id+=COREFC(script_reader[i].c_str());
+          active_script.push_back(COREFC(script_reader[i].c_str()));
+        }
         break;
     }
   }

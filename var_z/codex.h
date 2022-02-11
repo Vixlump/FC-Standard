@@ -2,6 +2,9 @@
 
 //custom types
 typedef long double triple;
+struct codex_function_swap {
+  vector<uint32_t> script;
+};
 
 string original_file_name = "active";
 const string defined_file_extention = ".fc";
@@ -20,9 +23,12 @@ uint32_t known_threads = 1;
 
 uint64_t codex_id = 0;
 
+map <uint32_t, vector<uint32_t>> fc_functions;
+
 //anything you add here needs to get added to the patchwork.h load_codex and be cleared
 thread_local vector <string> script_reader;
 thread_local vector <uint32_t> active_script;
+thread_local vector <codex_function_swap> active_script_bak;
 thread_local vector <string> active_string;
 thread_local vector <int64_t> active_int64;
 thread_local vector <int32_t> active_int32;

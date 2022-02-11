@@ -1,0 +1,28 @@
+/# This is where we will test the funciton declaration and calling for FC Standard
+/# This script should be used for referance.
+@#function_test_start
+~~~*
+
+f
+testfunction
+*i
++output
+_line
+s#Hello World from a function
+_ret
+i*
+?*
+*#
+*i
++output
+_line
+s#Before Function
+_ret
+i*
+*testfunction
+*i
++output
+_line
+s#After Function
+_ret
+i*

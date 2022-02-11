@@ -1,6 +1,6 @@
 /# this is a comment I can place anywhere that is non stream relivent and it will be treated as whitespace
-@#main
-~~~*
+f
+main
 *v
 +store
 _int
@@ -16,3 +16,6 @@ test
 _break
 _ret
 i*
+?*
+*#
+*main

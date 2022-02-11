@@ -54,7 +54,7 @@ void input_output() {
       case COREFC("_break"):
         cout<<endl;
         break;
-      case COREFC("_print"):
+      case COREFC("_text"):
         fc_getline();
         cout<<codex_get_string(active_script[line]);
         break;
