@@ -10,7 +10,13 @@ void action_overloading_fcload() {
 	line_bak[line_bak.size()-1]++;
 }
 void action_overloading_escape() {
-
+	fc_getline();
+	if (ACTION_OVERLOAD_OWNER==COREFC("~~~*")||ACTION_OVERLOAD_OWNER==active_script[line]) {
+		fc_getline();
+		line = codex_get_assignment(active_script[line]);
+	} else {
+		fc_getline();
+	}
 }
 void action_overloading_whitespace() {
 	fc_getline();
