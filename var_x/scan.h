@@ -24,6 +24,9 @@ void scan_stream() {
       case COREFC("f")://define function
         fc_function_create();
         goto escape_stream;
+      case COREFC("//A")://action overloader
+        action_overloading_stream();
+        goto escape_stream;
       //standard:
       case COREFC("?*")://sexit
         return;

@@ -73,6 +73,7 @@ using namespace this_thread;
 #include "var_y/p_t.h"
 #include "var_y/livepatch.h"
 #include "var_y/function_driver.h"
+#include "var_y/overloader.h"
 
 //var x deps
 #include "var_x/error.h"
