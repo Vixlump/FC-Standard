@@ -1,10 +1,11 @@
 #pragma once
 
 void debug_point() {
-  cout<<"Hit[N="<<file_name<<" L="<<line + 1<<" T="<<thread_label<<"]"<<endl;
+  cout<<fc_version<<"[N="<<file_name<<" L="<<line + 1<<" T="<<thread_label<<"]"<<endl;
 }
 void debug_info() {
   cout<<"FC Debug Report:"<<endl;
+  cout<<"FC Version["<<fc_version<<"]"<<endl;
   cout<<"First Script["<<original_file_name<<"]"<<endl;
   cout<<"Current Script["<<file_name<<"]"<<endl;
   cout<<"Current Script Length["<<active_script.size()<<"]"<<endl;

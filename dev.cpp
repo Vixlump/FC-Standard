@@ -65,6 +65,7 @@ using namespace this_thread;
 
 //var z deps
 //#include "var_z/int128.h"
+#include "ver_z/version.h"
 #include "var_z/hash.h"
 #include "var_z/codex.h"
 #include "var_z/patchwork.h"
