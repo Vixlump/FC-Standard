@@ -39,7 +39,7 @@ void fc_function_create() {
 	fc_function_input_name = active_script[line];
 	while(line < active_script.size()) {
 		fc_getline();
-		if (active_script[line]==numeric_limits<uint32_t>::max()) {return;}
+		if (active_script[line]==phantom_hash) {return;}
 		fc_functions[fc_function_input_name].push_back(active_script[line]);
 	}
 }

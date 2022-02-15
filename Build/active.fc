@@ -3,19 +3,19 @@ f
 main
 *v
 +store
-_int
+_string
 test
-n#42
+s#this was said using _line
 _ret
 v*
 *i
 +output
-_var
-_int
+_line
+v#
 test
-_break
 _ret
 i*
 ?*
-*#
+0#
 *main
+**

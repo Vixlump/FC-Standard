@@ -89,7 +89,7 @@ void var_store() {
         codex_store_bool(active_script[line], codex_get_bool(active_script[line+1]));
         fc_getline();
         break;
-      case COREFC("string"):
+      case COREFC("_string"):
         fc_getline();
         codex_store_string(active_script[line], codex_get_string(active_script[line+1]));
         fc_getline();

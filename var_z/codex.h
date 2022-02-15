@@ -13,6 +13,8 @@ thread_local string file_name = "active.fc";
 thread_local vector <string> file_name_bak;
 
 constexpr uint64_t phantom_line = numeric_limits<uint64_t>::max();
+constexpr uint32_t phantom_hash = numeric_limits<uint32_t>::max();
+constexpr uint32_t phantom_var = phantom_hash-1;
 
 thread_local uint64_t line = 0;
 thread_local vector <uint32_t> line_bak;
@@ -40,41 +42,6 @@ thread_local vector <double> active_double;
 thread_local vector <triple> active_triple;
 struct assignment { uint32_t name; uint64_t line; };
 thread_local vector <assignment> active_assignments;
-
-inline uint64_t codex_get_assignment(uint32_t name) {
-  for (uint32_t i = 0; i < active_assignments.size(); i++) {
-    if (active_assignments[i].name==name) {return active_assignments[i].line;}
-  }
-  exit(42);
-}
-
-inline string codex_get_string(uint64_t input) {
-  return active_string[input];
-}
-inline uint32_t codex_get_int32(uint64_t input) {
-  return active_int32[input];
-}
-inline uint64_t codex_get_int64(uint64_t input) {
-  return active_int64[input];
-}
-inline uint16_t codex_get_int16(uint64_t input) {
-  return active_int16[input];
-}
-inline uint8_t codex_get_int8(uint64_t input) {
-  return active_int8[input];
-}
-inline bool codex_get_bool(uint64_t input) {
-  return active_bool[input];
-}
-inline float codex_get_float(uint64_t input) {
-  return active_float[input];
-}
-inline double codex_get_double(uint64_t input) {
-  return active_double[input];
-}
-inline triple codex_get_triple(uint64_t input) {
-  return active_triple[input];
-}
 
 struct fc_type_string {uint32_t name;vector <string> value;};
 struct fc_type_int64 {uint32_t name;vector <int64_t> value;};
@@ -220,4 +187,95 @@ inline triple codex_return_triple_array(uint32_t name, uint64_t pos) {
 }
 inline uint32_t codex_return_hash_array(uint32_t name, uint64_t pos) {
   return hash_var_array[name][pos];
+}
+
+//constants:
+inline uint64_t codex_get_assignment(uint32_t name) {
+  for (uint32_t i = 0; i < active_assignments.size(); i++) {
+    if (active_assignments[i].name==name) {return active_assignments[i].line;}
+  }
+  exit(42);
+}
+
+inline string codex_get_string(uint64_t input) {
+  switch (input) {
+    case phantom_var:
+      line++;
+      return codex_return_string(active_script[line]);
+    default:
+      return active_string[input];
+      
+  }
+}
+inline uint32_t codex_get_int32(uint64_t input) {
+  switch (input) {
+    case phantom_var:
+      line++;
+      return codex_return_int32(active_script[line]);
+    default:
+      return active_int32[input];
+  }
+}
+inline uint64_t codex_get_int64(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_int64(active_script[line]);
+    default:
+      return active_int64[input];
+  }
+}
+inline uint16_t codex_get_int16(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_int16(active_script[line]);
+    default:
+      return active_int16[input];
+  }
+}
+inline uint8_t codex_get_int8(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_int8(active_script[line]);
+    default:
+      return active_int8[input];
+  }
+}
+inline bool codex_get_bool(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_bool(active_script[line]);
+    default:
+      return active_bool[input];
+  }
+}
+inline float codex_get_float(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_float(active_script[line]);
+    default:
+      return active_float[input];
+  }
+}
+inline double codex_get_double(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_double(active_script[line]);
+    default:
+      return active_double[input];
+  }
+}
+inline triple codex_get_triple(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_triple(active_script[line]);
+    default:
+      return active_triple[input];
+  }
 }
