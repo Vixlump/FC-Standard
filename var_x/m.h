@@ -60,68 +60,23 @@ void math_stream() {
 }
 
 void math_function() {
-	uint16_t math_var_type = actiontype::action_int64;
+	uint16_t math_var_type = actiontype::action_triple;
 	uint32_t math_var_name;
+	exprtk::symbol_table<long double> math_symbol_table;
+	fc_getline();
+	long double i = codex_return_triple(active_script[line]);
+	math_symbol_table.add_variable("x", i);
+	math_symbol_table.add_constants();
+	math_var_name = active_script[line];
 	string math_parcer_string = "";
 	fc_getline();
-	fc_getline();
-	long double functionselfref [1];
-	switch(active_script[line-1]) {
-		case COREFC("_int64"):
-			math_var_type = actiontype::action_int64;
-			functionselfref[0] = static_cast<long double>(codex_return_int64(active_script[line]));
-			break;
-		case COREFC("_int32"):
-			math_var_type = actiontype::action_int32;
-			functionselfref[0] = static_cast<long double>(codex_return_int32(active_script[line]));
-			break;
-		case COREFC("_int16"):
-			math_var_type = actiontype::action_int16;
-			functionselfref[0] = static_cast<long double>(codex_return_int16(active_script[line]));
-			break;
-		case COREFC("_int8"):
-			math_var_type = actiontype::action_int8;
-			functionselfref[0] = static_cast<long double>(codex_return_int8(active_script[line]));
-			break;
-		case COREFC("_bool"):
-			math_var_type = actiontype::action_bool;
-			functionselfref[0] = static_cast<long double>(codex_return_bool(active_script[line]));
-			break;
-		case COREFC("_triple"):
-			math_var_type = actiontype::action_triple;
-			functionselfref[0] = codex_return_triple(active_script[line]);
-			break;
-		case COREFC("_double"):
-			math_var_type = actiontype::action_double;
-			functionselfref[0] = static_cast<long double>(codex_return_double(active_script[line]));
-			break;
-		case COREFC("_float"):
-			math_var_type = actiontype::action_float;
-			functionselfref[0] = static_cast<long double>(codex_return_float(active_script[line]));
-			break;
-		case COREFC("_string"):
-			math_var_type = actiontype::action_string;
-			functionselfref[0] = atof(codex_return_string(active_script[line]).c_str());
-			break;
-		default:
-		error_stream();
-			break;
-	}
-	math_var_name = active_script[line];
-	bool mathfunctionloop = true;
-	do {
-		fc_getline();
-		switch (active_script[line]) {
-			case COREFC("_ret"):
-				mathfunctionloop = false;
-				break;
-			default:
-				math_parcer_string += codex_get_string(active_script[line]);
-				break;
-		}
-		
-		} while(mathfunctionloop==true);
-
+	math_parcer_string = codex_get_string(active_script[line]);
+	
+	exprtk::expression<long double> math_expression;
+	math_expression.register_symbol_table(math_symbol_table);
+	exprtk::parser<long double> math_parser;
+	math_parser.compile(math_parcer_string, math_expression);
+	codex_store_triple(math_var_name, math_expression.value());
 }
 void math_graph() {
 

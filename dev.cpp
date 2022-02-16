@@ -69,6 +69,7 @@ using namespace this_thread;
 #include "var_z/hash.h"
 #include "var_z/codex.h"
 #include "var_z/patchwork.h"
+#include "var_z/exprtk.hpp"
 
 //var y deps
 #include "var_y/p_t.h"

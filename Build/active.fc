@@ -1,20 +1,32 @@
-/# this is a comment I can place anywhere that is non stream relivent and it will be treated as whitespace
+/# This is a comment
 f
 main
+/#The +function command is still in heavy development and is not ready for standard use
 *v
 +store
-_string
+_triple
 test
-s#this was said using _line
+t#42.0
+_string
+exp
+s#x+x
 _ret
 v*
+*m
++function
+test
+v#
+exp
+m*
 *i
 +output
-_line
-v#
+_var
+_triple
 test
+_break
 _ret
 i*
 ?*
 0#
 *main
+**
