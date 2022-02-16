@@ -76,6 +76,9 @@ using namespace this_thread;
 #include "var_y/function_driver.h"
 #include "var_y/overloader.h"
 
+//math parcer
+//#include "fparser.hh"
+
 //var x deps
 #include "var_x/error.h"
 #include "var_x/debug.h"
