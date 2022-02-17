@@ -59,24 +59,76 @@ void math_stream() {
 	} loop;
 }
 
-void math_function() {
-	uint16_t math_var_type = actiontype::action_triple;
-	uint32_t math_var_name;
-	exprtk::symbol_table<long double> math_symbol_table;
-	fc_getline();
-	long double i = codex_return_triple(active_script[line]);
-	math_symbol_table.add_variable("x", i);
+template <typename T>
+void math_function_define(vector<T> & i, uint16_t vartype) {
+	exprtk::symbol_table<T> math_symbol_table;
+	string mathdefstring = "";
+	for (uint32_t i2 = 0; i2 < i.size(); i2++) {
+		mathdefstring = "x" + to_string(i2);
+		math_symbol_table.add_variable(mathdefstring, i[i2]);
+	}
 	math_symbol_table.add_constants();
-	math_var_name = active_script[line];
+
 	string math_parcer_string = "";
 	fc_getline();
 	math_parcer_string = codex_get_string(active_script[line]);
-	
-	exprtk::expression<long double> math_expression;
+	exprtk::expression<T> math_expression;
 	math_expression.register_symbol_table(math_symbol_table);
-	exprtk::parser<long double> math_parser;
+	exprtk::parser<T> math_parser;
 	math_parser.compile(math_parcer_string, math_expression);
-	codex_store_triple(math_var_name, math_expression.value());
+	fc_getline();
+	switch(vartype) {
+		case actiontype::action_triple:
+			codex_store_triple(active_script[line], math_expression.value());
+			break;
+		case actiontype::action_double:
+			codex_store_double(active_script[line], math_expression.value());
+			break;
+		case actiontype::action_float:
+			codex_store_float(active_script[line], math_expression.value());
+			break;
+		default:
+			error_stream();
+			break;
+	}
+}
+
+void math_function() {
+	//select type
+	fc_getline();
+	uint16_t math_var_type;
+	switch (active_script[line]) {
+		case COREFC("_triple"):
+			vector <triple> i_triple;
+			math_var_type = actiontype::action_triple;
+			loop {fc_getline();
+				if (active_script[line]==COREFC("_begin")) {break;}
+				i_triple.push_back(codex_get_triple(active_script[line]));
+			}
+			math_function_define<triple>(i_triple, math_var_type);
+			break;
+		case COREFC("_double"):
+			vector <double> i_double;
+			math_var_type = actiontype::action_double;
+			loop {fc_getline();
+				if (active_script[line]==COREFC("_begin")) {break;}
+				i_double.push_back(codex_get_double(active_script[line]));
+			}
+			math_function_define<double>(i_double, math_var_type);
+			break;
+		case COREFC("_float"):
+			vector <float> i_float;
+			math_var_type = actiontype::action_float;
+			loop {fc_getline();
+				if (active_script[line]==COREFC("_begin")) {break;}
+				i_float.push_back(codex_get_float(active_script[line]));
+			}
+			math_function_define<float>(i_float, math_var_type);
+			break;
+		default:
+			error_stream();
+			break;
+	}
 }
 void math_graph() {
 
