@@ -37,6 +37,7 @@ support@lumpology.com
 #include <memory>
 #include <new>
 #include <map>
+#include <type_traits>
 //#include <cctype>
 
 //math control
