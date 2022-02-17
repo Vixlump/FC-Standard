@@ -99,32 +99,38 @@ void math_function() {
 	uint16_t math_var_type;
 	switch (active_script[line]) {
 		case COREFC("_triple"):
-			vector <triple> i_triple;
-			math_var_type = actiontype::action_triple;
-			loop {fc_getline();
-				if (active_script[line]==COREFC("_begin")) {break;}
-				i_triple.push_back(codex_get_triple(active_script[line]));
+			{
+				vector <triple> i_triple;
+				math_var_type = actiontype::action_triple;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_triple.push_back(codex_get_triple(active_script[line]));
+				} loop;
+				math_function_define<triple>(i_triple, math_var_type);
+				break;
 			}
-			math_function_define<triple>(i_triple, math_var_type);
-			break;
 		case COREFC("_double"):
-			vector <double> i_double;
-			math_var_type = actiontype::action_double;
-			loop {fc_getline();
-				if (active_script[line]==COREFC("_begin")) {break;}
-				i_double.push_back(codex_get_double(active_script[line]));
+			{
+				vector <double> i_double;
+				math_var_type = actiontype::action_double;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_double.push_back(codex_get_double(active_script[line]));
+				} loop;
+				math_function_define<double>(i_double, math_var_type);
+				break;
 			}
-			math_function_define<double>(i_double, math_var_type);
-			break;
 		case COREFC("_float"):
-			vector <float> i_float;
-			math_var_type = actiontype::action_float;
-			loop {fc_getline();
-				if (active_script[line]==COREFC("_begin")) {break;}
-				i_float.push_back(codex_get_float(active_script[line]));
+			{
+				vector <float> i_float;
+				math_var_type = actiontype::action_float;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_float.push_back(codex_get_float(active_script[line]));
+				} loop;
+				math_function_define<float>(i_float, math_var_type);
+				break;
 			}
-			math_function_define<float>(i_float, math_var_type);
-			break;
 		default:
 			error_stream();
 			break;
