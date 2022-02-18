@@ -95,7 +95,7 @@ void action_overloading_stream() {
 			case COREFC("*whitespace"):
 				action_overloading_whitespace();
 				break;
-			case COREFC("*flag"):
+			case COREFC("*flag")://define error
 				action_overloading_flag();
 				break;
 			case COREFC("*loop"):

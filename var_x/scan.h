@@ -33,9 +33,6 @@ void scan_stream() {
       case COREFC("%")://abstract register
         abstract_register();
         goto escape_stream;
-      case COREFC("@*")://assignment wrap
-        assignment_wrap();
-        goto escape_stream;
       case COREFC("~~~*")://uexit
         goto escape_stream;
       default:
@@ -62,6 +59,9 @@ void scan_stream() {
         break;
       case COREFC("*i")://input stream
         input_stream();
+        break;
+      case COREFC("@*")://assignment wrap
+        assignment_wrap();
         break;
       default://error trigger
         error_stream();

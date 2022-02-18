@@ -2,6 +2,7 @@
 void var_convert();
 void var_store_array();
 void var_store();
+void var_delete();
 
 void var_stream() {
   do {
@@ -18,27 +19,28 @@ void var_stream() {
       case COREFC("+allocate"):
         break;
       case COREFC("+delete"):
+        var_delete();
         break;
       case COREFC("+locate"):
         break;
-        //standard:
-        case COREFC("v*")://sexit
-        case COREFC("~~~*")://uexit
-          return;
-        case COREFC("%")://abstract register
-          abstract_register();
-          break;
-        case COREFC("@*")://assignment wrap
-          assignment_wrap();
-          break;
-        case COREFC("**")://debug point
-          debug_point();
-          break;
-        case COREFC("")://whitespace
-          break;
-        case COREFC("*~~~")://channelswap stream
-          channelswap_stream();
-          break;
+      //standard:
+      case COREFC("v*")://sexit
+      case COREFC("~~~*")://uexit
+        return;
+      case COREFC("%")://abstract register
+        abstract_register();
+        break;
+      case COREFC("**")://debug point
+        debug_point();
+        break;
+      case COREFC("")://whitespace
+        break;
+      case COREFC("*~~~")://channelswap stream
+        channelswap_stream();
+        break;
+      case COREFC("@*")://assignment wrap
+        assignment_wrap();
+        break;
       default:
         error_stream();
         break;
@@ -297,4 +299,21 @@ void var_store_array() {
         error_stream();
         break;
   }
+}
+
+void var_delete() {
+  do {
+    fc_getline();
+    switch (active_script[line]) {
+      case COREFC("_int"):
+      case COREFC("_int64"):
+        
+        break;
+      case COREFC("_ret"):
+        return;
+      default:
+        error_stream();
+        break;
+    }
+  } loop;
 }

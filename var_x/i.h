@@ -18,9 +18,6 @@ void input_stream() {
       case COREFC("%")://abstract register
         abstract_register();
         break;
-      case COREFC("@*")://assignment wrap
-        assignment_wrap();
-        break;
       case COREFC("**")://debug point
         debug_point();
         break;
@@ -28,6 +25,9 @@ void input_stream() {
         break;
       case COREFC("*~~~")://channelswap stream
         channelswap_stream();
+        break;
+      case COREFC("@*")://assignment wrap
+        assignment_wrap();
         break;
       default://error trigger
         error_stream();

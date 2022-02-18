@@ -27,9 +27,6 @@ void control_stream() {
         	case COREFC("%")://abstract register
           		abstract_register();
           		break;
-        	case COREFC("@*")://assignment wrap
-          	assignment_wrap();
-          		break;
         	case COREFC("**")://debug point
           		debug_point();
           		break;
@@ -37,6 +34,9 @@ void control_stream() {
           		break;
         	case COREFC("*~~~")://channelswap stream
           		channelswap_stream();
+          		break;
+          	case COREFC("@*")://assignment wrap
+          		assignment_wrap();
           		break;
       		default:
         		error_stream();

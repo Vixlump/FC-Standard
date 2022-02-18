@@ -17,7 +17,7 @@ constexpr uint32_t phantom_hash = numeric_limits<uint32_t>::max();
 constexpr uint32_t phantom_var = phantom_hash-1;
 
 thread_local uint64_t line = 0;
-thread_local vector <uint32_t> line_bak;
+thread_local vector <uint64_t> line_bak;
 
 thread_local uint32_t thread_label = 0;
 uint32_t adapted_threads = 1;

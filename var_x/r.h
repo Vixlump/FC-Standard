@@ -25,9 +25,6 @@ void reserved_stream() {
         	case COREFC("%")://abstract register
           		abstract_register();
           		break;
-        	case COREFC("@*")://assignment wrap
-          	assignment_wrap();
-          		break;
         	case COREFC("**")://debug point
           		debug_point();
           		break;
@@ -35,6 +32,9 @@ void reserved_stream() {
           		break;
         	case COREFC("*~~~")://channelswap stream
           		channelswap_stream();
+          		break;
+          	case COREFC("@*")://assignment wrap
+          		assignment_wrap();
           		break;
       		default:
         		error_stream();
@@ -52,9 +52,21 @@ void reserved_tap() {
 				fc_getline();
 				error_debug_mode = codex_get_bool(active_script[line]);
 				break;
-			case COREFC("_asm"):
+			case COREFC("_errorcap"):
+				fc_getline();
+				error_cap = codex_get_int64(active_script[line]);
 				break;
-			case COREFC("_args"):
+			case COREFC("_errormsg"):
+				fc_getline();
+				error_trace=(error_trace+"|"codex_get_string(active_script[line]);
+				break;
+			case COREFC("_deprication"):
+				deprications++;
+				break;
+			case COREFC("_errorlevel"):
+				error_level++;
+				break;
+			case COREFC("_asm"):
 				break;
 			case COREFC("_ret"):
 				return;
