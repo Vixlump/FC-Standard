@@ -3,6 +3,7 @@ void var_convert();
 void var_store_array();
 void var_store();
 void var_delete();
+void var_swap();
 
 void var_stream() {
   do {
@@ -15,6 +16,7 @@ void var_stream() {
         var_convert();
         break;
       case COREFC("+swap"):
+        var_swap();
         break;
       case COREFC("+array"):
         break;
@@ -402,6 +404,110 @@ void var_delete() {
       case COREFC("_array"):
         var_delete_array();
         break;
+      case COREFC("_ret"):
+        return;
+      default:
+        error_stream();
+        break;
+    }
+  } loop;
+}
+
+void var_swap() {
+  do {
+    fc_getline();
+    switch(active_script[line]) {
+      case COREFC("_int"):
+      case COREFC("_int64"):
+        {
+          fc_getline();
+          int64_t i = codex_return_int64(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_int64(name, codex_return_int64(active_script[line]));
+          codex_store_int64(active_script[line], i);
+          break;
+        }
+      case COREFC("_int32"):
+        {
+          fc_getline();
+          int32_t i = codex_return_int32(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_int32(name, codex_return_int32(active_script[line]));
+          codex_store_int32(active_script[line], i);
+          break;
+        }
+      case COREFC("_int16"):
+        {
+          fc_getline();
+          int16_t i = codex_return_int16(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_int16(name, codex_return_int16(active_script[line]));
+          codex_store_int16(active_script[line], i);
+          break;
+        }
+      case COREFC("_int8"):
+        {
+          fc_getline();
+          int8_t i = codex_return_int8(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_int8(name, codex_return_int8(active_script[line]));
+          codex_store_int8(active_script[line], i);
+          break;
+        }
+      case COREFC("_bool"):
+        {
+          fc_getline();
+          bool i = codex_return_bool(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_bool(name, codex_return_bool(active_script[line]));
+          codex_store_bool(active_script[line], i);
+          break;
+        }
+      case COREFC("_triple"):
+        {
+          fc_getline();
+          triple i = codex_return_triple(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_triple(name, codex_return_triple(active_script[line]));
+          codex_store_triple(active_script[line], i);
+          break;
+        }
+      case COREFC("_double"):
+        {
+          fc_getline();
+          double i = codex_return_double(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_double(name, codex_return_double(active_script[line]));
+          codex_store_double(active_script[line], i);
+          break;
+        }
+      case COREFC("_float"):
+        {
+          fc_getline();
+          float i = codex_return_float(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_float(name, codex_return_float(active_script[line]));
+          codex_store_float(active_script[line], i);
+          break;
+        }
+      case COREFC("_string"):
+        {
+          fc_getline();
+          string i = codex_return_string(active_script[line]);
+          uint64_t name = active_script[line];
+          fc_getline();
+          codex_store_string(name, codex_return_string(active_script[line]));
+          codex_store_string(active_script[line], i);
+          break;
+        }
       case COREFC("_ret"):
         return;
       default:
