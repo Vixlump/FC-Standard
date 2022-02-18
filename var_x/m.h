@@ -63,7 +63,7 @@ template <typename T>
 void math_function_define(vector<T> & i, uint16_t vartype) {
 	exprtk::symbol_table<T> math_symbol_table;
 	string mathdefstring = "";
-	for (uint32_t i2 = 0; i2 < i.size(); i2++) {
+	for (uint64_t i2 = 0; i2 < i.size(); i2++) {
 		mathdefstring = "x" + to_string(i2);
 		math_symbol_table.add_variable(mathdefstring, i[i2]);
 	}
@@ -141,7 +141,7 @@ void math_graph() {
 }
 void math_cal() {
 	uint16_t math_var_type = actiontype::action_int64;
-	uint32_t math_output_var;
+	uint64_t math_output_var;
 	uint16_t math_operator;
 	fc_getline();
 	switch(active_script[line]) {

@@ -34,7 +34,7 @@ bool fc_function_check() {
 }
 
 void fc_function_create() {
-	uint32_t fc_function_input_name;
+	uint64_t fc_function_input_name;
 	fc_getline();
 	fc_function_input_name = active_script[line];
 	while(line < active_script.size()) {

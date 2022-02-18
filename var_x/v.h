@@ -16,6 +16,8 @@ void var_stream() {
         break;
       case COREFC("+swap"):
         break;
+      case COREFC("+array"):
+        break;
       case COREFC("+allocate"):
         break;
       case COREFC("+delete"):
@@ -301,13 +303,104 @@ void var_store_array() {
   }
 }
 
+void var_delete_array() {
+  fc_getline();
+  switch (active_script[line]) {
+    case COREFC("_int"):
+    case COREFC("_int64"):
+      fc_getline();
+      int64_var_array[active_script[line]].clear();
+      int64_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_int32"):
+      fc_getline();
+      int32_var_array[active_script[line]].clear();
+      int32_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_int16"):
+      fc_getline();
+      int16_var_array[active_script[line]].clear();
+      int16_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_int8"):
+      fc_getline();
+      int8_var_array[active_script[line]].clear();
+      int8_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_bool"):
+      fc_getline();
+      bool_var_array[active_script[line]].clear();
+      bool_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_triple"):
+      fc_getline();
+      triple_var_array[active_script[line]].clear();
+      triple_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_double"):
+      fc_getline();
+      double_var_array[active_script[line]].clear();
+      double_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_float"):
+      fc_getline();
+      float_var_array[active_script[line]].clear();
+      float_var_array.erase(active_script[line]);
+      break;
+    case COREFC("_string"):
+      fc_getline();
+      string_var_array[active_script[line]].clear();
+      string_var_array.erase(active_script[line]);
+      break;
+    default:
+      error_stream();
+      break;
+  }
+}
+
 void var_delete() {
   do {
     fc_getline();
     switch (active_script[line]) {
       case COREFC("_int"):
       case COREFC("_int64"):
-        
+        fc_getline();
+        int64_var.erase(active_script[line]);
+        break;
+      case COREFC("_int32"):
+        fc_getline();
+        int32_var.erase(active_script[line]);
+        break;
+      case COREFC("_int16"):
+        fc_getline();
+        int16_var.erase(active_script[line]);     
+        break;
+      case COREFC("_int8"):
+        fc_getline();
+        int8_var.erase(active_script[line]);
+        break;
+      case COREFC("_bool"):
+        fc_getline();
+        bool_var.erase(active_script[line]);
+        break;
+      case COREFC("_triple"):
+        fc_getline();
+        triple_var.erase(active_script[line]);
+        break;
+      case COREFC("_double"):
+        fc_getline();
+        double_var.erase(active_script[line]);
+        break;
+      case COREFC("_float"):
+        fc_getline();
+        float_var.erase(active_script[line]);
+        break;
+      case COREFC("_string"):
+        fc_getline();
+        string_var.erase(active_script[line]);
+        break;
+      case COREFC("_array"):
+        var_delete_array();
         break;
       case COREFC("_ret"):
         return;

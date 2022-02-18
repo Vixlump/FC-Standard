@@ -60,10 +60,10 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
       active_script.push_back(atoi(script_reinterpretor.c_str()));
       break;
     case '*':
-    case '0'://largest possible uint32_t to ensure namespace is never taken
+    case '0'://largest possible uint64_t to ensure namespace is never taken
       active_script.push_back(phantom_hash);
       break;
-    case 'v'://second largest possible uint32_t to ensure var is called is never taken
+    case 'v'://second largest possible uint64_t to ensure var is called is never taken
       active_script.push_back(phantom_var);
       break;
     case '/'://notation

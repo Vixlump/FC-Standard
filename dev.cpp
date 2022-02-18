@@ -61,8 +61,21 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
-#define loop while(true)
 //pre var deps
+#define loop while(true)
+
+   //Platforms specific inclusion controller:
+   //Windows = 1
+   //MacOSX = 2
+   //GNU/Linux = 3
+   //Android = 4
+   //Ubuntu Touch = 5
+   //BSD = 6
+   //Raspberry PI = 7
+   //IOS = 8
+   //PineTime = 9
+   //Oculus = 10
+#define FCPLATFORM 3
 
 //var z deps
 //#include "var_z/int128.h"

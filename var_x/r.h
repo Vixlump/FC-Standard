@@ -58,7 +58,7 @@ void reserved_tap() {
 				break;
 			case COREFC("_errormsg"):
 				fc_getline();
-				error_trace=(error_trace+"|"codex_get_string(active_script[line]);
+				error_trace=(error_trace+"|"+codex_get_string(active_script[line]));
 				break;
 			case COREFC("_deprication"):
 				deprications++;
