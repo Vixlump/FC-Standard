@@ -2,10 +2,23 @@
 #define ACTION_OVERLOAD_OWNER active_script_bak[active_script_bak.size()-1].script[line_bak[line_bak.size()-1]]
 thread_local uint16_t action_flag;
 
+enum actiontype {
+	action_hash,
+	action_int64,
+	action_int32,
+	action_int16,
+	action_int8,
+	action_float,
+	action_double,
+	action_triple,
+	action_bool,
+	action_string
+};
+
 void action_overloading_case() {
 
 }
-void action_overloading_argument() {//non standard, needs array support of some kind
+void action_overloading_argument_var() {
 	line_bak[line_bak.size()-1]++;
 	uint64_t overloaded_line = ACTION_OVERLOAD_OWNER;
 	fc_getline();
@@ -28,7 +41,7 @@ void action_overloading_argument() {//non standard, needs array support of some 
 		case actiontype::action_bool:
 			codex_store_bool(active_script[line], codex_get_bool(overloaded_line));
 			break;
-		case actiontype::actin_triple:
+		case actiontype::action_triple:
 			codex_store_triple(active_script[line], codex_get_triple(overloaded_line));
 			break;
 		case actiontype::action_double:
@@ -41,9 +54,62 @@ void action_overloading_argument() {//non standard, needs array support of some 
 			codex_store_string(active_script[line], codex_get_string(overloaded_line));
 			break;
 		default:
-			error_stream();
 			cout<<"Warning, Ungarded Flag, Program Will Try To Terminate Safely"<<endl;
 			exit(42);
+	}
+}
+void action_overloading_argument_array() {
+	line_bak[line_bak.size()-1]++;
+	uint64_t overloaded_line = ACTION_OVERLOAD_OWNER;
+	fc_getline();
+	fc_getline();
+	switch (action_flag) {
+		case actiontype::action_hash:
+			codex_store_hash_array(active_script[line-1], codex_get_int64(active_script[line]), overloaded_line);
+			break;
+		case actiontype::action_int64:
+			codex_store_int64_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_int64(overloaded_line));
+			break;
+		case actiontype::action_int32:
+			codex_store_int32_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_int32(overloaded_line));
+			break;
+		case actiontype::action_int16:
+			codex_store_int16_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_int16(overloaded_line));
+			break;
+		case actiontype::action_int8:
+			codex_store_int8_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_int8(overloaded_line));
+			break;
+		case actiontype::action_bool:
+			codex_store_bool_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_bool(overloaded_line));
+			break;
+		case actiontype::action_triple:
+			codex_store_triple_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_triple(overloaded_line));
+			break;
+		case actiontype::action_double:
+			codex_store_double_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_double(overloaded_line));
+			break;
+		case actiontype::action_float:
+			codex_store_float_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_float(overloaded_line));
+			break;
+		case actiontype::action_string:
+			codex_store_string_array(active_script[line-1], codex_get_int64(active_script[line]), codex_get_string(overloaded_line));
+			break;
+		default:
+			cout<<"Warning, Ungarded Flag, Program Will Try To Terminate Safely"<<endl;
+			exit(42);
+	}
+}
+void action_overloading_argument() {//non standard, needs array support of some kind
+	fc_getline();
+	switch (active_script[line]) {
+		case COREFC("+var"):
+			action_overloading_argument_var();
+			break;
+		case COREFC("+array"):
+			action_overloading_argument_array();
+			break;
+		default:
+			break;
 	}
 }
 void action_overloading_escape() {
@@ -61,18 +127,6 @@ void action_overloading_whitespace() {
 		line = codex_get_assignment(active_script[line]);
 	}
 }
-enum actiontype {
-	action_hash,
-	action_int64,
-	action_int32,
-	action_int16,
-	action_int8,
-	action_float,
-	action_double,
-	action_triple,
-	action_bool,
-	action_string
-};
 void action_overloading_flag() {
 	fc_getline();
 	switch (active_script[line]) {
@@ -111,10 +165,14 @@ void action_overloading_flag() {
 			break;
 	}
 }
+
+void action_overloading_skip() {
+	line_bak[line_bak.size()-1]++;
+}
 void action_overloading_stream() {
 	bool action_loop = false;
-	fc_getline();
 	do {
+		fc_getline();
 		switch(active_script[line]) {
 			case COREFC("*action"):
 				action_overloading_argument();
@@ -127,6 +185,9 @@ void action_overloading_stream() {
 				break;
 			case COREFC("*whitespace"):
 				action_overloading_whitespace();
+				break;
+			case COREFC("*skip"):
+				action_overloading_skip();
 				break;
 			case COREFC("*flag")://define error
 				action_overloading_flag();

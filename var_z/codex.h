@@ -113,6 +113,9 @@ inline void codex_store_int16_array(uint64_t name, uint64_t pos, int16_t value) 
 inline void codex_store_int8_array(uint64_t name, uint64_t pos, int8_t value) {
   int8_var_array[name][pos] = value;
 }
+inline void codex_store_bool_array(uint64_t name, uint64_t pos, bool value) {
+  bool_var_array[name][pos] = value;
+}
 inline void codex_store_float_array(uint64_t name, uint64_t pos, float value) {
   float_var_array[name][pos] = value;
 }

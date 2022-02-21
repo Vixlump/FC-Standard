@@ -1,40 +1,25 @@
-/# This is a comment
+/#Function Test:
+
 f
 main
-/#The +function command is still in heavy development and is not ready for standard use
-*v
-+store
-_int8
-test
-8#84.0
-_int8
-test2
-8#42.42
-_ret
-+swap
-_int8
-test
-test2
-_ret
-v*
-*m
-+function
-_int8
-v#
-test2
-_begin
-s#41+x0
-test
-m*
+/#This function will accept an argument
+//A
+*loop
+*flag
++string
+*action
++var
+contex.value.string
+loop*
 *i
 +output
-_var
-_int8
-test
-_break
+_line
+v#
+contex.value.string
 _ret
 i*
 ?*
 0#
+
 *main
-**
+s#Hello World
