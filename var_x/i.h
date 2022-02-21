@@ -3,6 +3,7 @@
 void input_output_var();
 void input_output_group();
 void input_output();
+void input_string();
 
 void input_stream() {
   do {
@@ -10,6 +11,9 @@ void input_stream() {
     switch (active_script[line]) {
       case COREFC("+output"):
         input_output();
+        break;
+      case COREFC("+string"):
+        input_string();
         break;
       //standard:
       case COREFC("i*")://sexit
@@ -128,6 +132,29 @@ void input_output_group() {
         return;
       default:
         cout<<codex_get_string(active_script[line]);
+        break;
+    }
+  } loop;
+}
+
+void input_string() {
+  do {
+    fc_getline();
+    switch(active_script[line]) {
+      case COREFC("_get"):
+        break;
+      case COREFC("_length"):
+        break;
+      case COREFC("_trunk"):
+        break;
+      case COREFC("_add"):
+        break;
+      case COREFC("_"):
+        break;
+      case COREFC("_ret"):
+        return;
+      default:
+        error_stream();
         break;
     }
   } loop;

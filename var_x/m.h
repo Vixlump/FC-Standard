@@ -87,6 +87,18 @@ void math_function_define(vector<T> & i, uint16_t vartype) {
 		case actiontype::action_float:
 			codex_store_float(active_script[line], math_expression.value());
 			break;
+		case actiontype::action_int64:
+			codex_store_int64(active_script[line], static_cast<int64_t>(math_expression.value()));
+			break;
+		case actiontype::action_int32:
+			codex_store_int32(active_script[line], static_cast<int32_t>(math_expression.value()));
+			break;
+		case actiontype::action_int16:
+			codex_store_int16(active_script[line], static_cast<int16_t>(math_expression.value()));
+			break;
+		case actiontype::action_int8:
+			codex_store_int8(active_script[line], static_cast<int8_t>(math_expression.value()));
+			break;
 		default:
 			error_stream();
 			break;
@@ -129,6 +141,51 @@ void math_function() {
 					i_float.push_back(codex_get_float(active_script[line]));
 				} loop;
 				math_function_define<float>(i_float, math_var_type);
+				break;
+			}
+		case COREFC("_int"):
+		case COREFC("_int64"):
+			{
+				vector <triple> i_int64;
+				math_var_type = actiontype::action_int64;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_int64.push_back(static_cast<triple>(codex_get_int64(active_script[line])));
+				} loop;
+				math_function_define<triple>(i_int64, math_var_type);
+				break;
+			}
+		case COREFC("_int32"):
+			{
+				vector <triple> i_int32;
+				math_var_type = actiontype::action_int32;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_int32.push_back(static_cast<triple>(codex_get_int32(active_script[line])));
+				} loop;
+				math_function_define<triple>(i_int32, math_var_type);
+				break;
+			}
+		case COREFC("_int16"):
+			{
+				vector <triple> i_int16;
+				math_var_type = actiontype::action_int16;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_int16.push_back(static_cast<triple>(codex_get_int16(active_script[line])));
+				} loop;
+				math_function_define<triple>(i_int16, math_var_type);
+				break;
+			}
+		case COREFC("_int8"):
+			{
+				vector <triple> i_int8;
+				math_var_type = actiontype::action_int8;
+				do {fc_getline();
+					if (active_script[line]==COREFC("_begin")) {break;}
+					i_int8.push_back(static_cast<triple>(codex_get_int8(active_script[line])));
+				} loop;
+				math_function_define<triple>(i_int8, math_var_type);
 				break;
 			}
 		default:

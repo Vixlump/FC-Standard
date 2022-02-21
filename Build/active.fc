@@ -4,22 +4,22 @@ main
 /#The +function command is still in heavy development and is not ready for standard use
 *v
 +store
-_triple
+_int8
 test
-t#84.0
-_triple
+8#84.0
+_int8
 test2
-t#42.42
+8#42.42
 _ret
 +swap
-_triple
+_int8
 test
 test2
 _ret
 v*
 *m
 +function
-_triple
+_int8
 v#
 test2
 _begin
@@ -29,7 +29,7 @@ m*
 *i
 +output
 _var
-_triple
+_int8
 test
 _break
 _ret
