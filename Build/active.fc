@@ -1,25 +1,59 @@
 /#Function Test:
-
+**
 f
 main
-/#This function will accept an argument
+/#Bool Arg Test
 //A
-*loop
 *flag
-+string
++hash
+//A
 *action
 +var
-contex.value.string
-loop*
+test1
+
+*c
++case
+_hash
+test1
+true
+@contex.jump.true
+false
+@contex.jump.false
+_ret
++goto
+@contex.jump.exit
+
+@#@contex.jump.true
+~~~*
 *i
 +output
 _line
-v#
-contex.value.string
+s#test1 = true
 _ret
 i*
+*c
++goto
+@contex.jump.exit
+
+@#@contex.jump.false
+~~~*
+*i
++output
+_line
+s#test1 = false
+_ret
+i*
+*c
++goto
+@contex.jump.exit
+
+@#@contex.jump.exit
+~~~*
+*r
+**
++terminate
 ?*
 0#
 
 *main
-s#Hello World
+true

@@ -99,7 +99,7 @@ void action_overloading_argument_array() {
 			exit(42);
 	}
 }
-void action_overloading_argument() {//non standard, needs array support of some kind
+void action_overloading_argument() {
 	fc_getline();
 	switch (active_script[line]) {
 		case COREFC("+var"):

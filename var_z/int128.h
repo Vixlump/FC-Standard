@@ -1,5 +1,7 @@
 #pragma once
 
+//work in progress
+
 struct fcint128 {uint64_t pos = 0;uint64_t neg = 0;};
 
 bool fcint128_is_pos(fcint128 & value) {

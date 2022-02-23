@@ -1,6 +1,6 @@
 #pragma once
 
-void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
+void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & in_patchwork_function, uint64_t & function_line_counter) {
   string script_reinterpretor;
   for (int i = hash_location+1; i<script_reader[input].length(); i++) {
     script_reinterpretor += script_reader[input][i];
@@ -49,7 +49,9 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
     case '@'://assignment
       assignment new_assignment_point;
       new_assignment_point.name = COREFC(script_reinterpretor.c_str());
-      new_assignment_point.line = input;
+      if (in_patchwork_function==true) {new_assignment_point.line = function_line_counter;} else {
+        new_assignment_point.line = input;
+      }
       active_assignments.push_back(new_assignment_point);
       active_script.push_back(COREFC(""));
       break;
@@ -61,6 +63,7 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
       break;
     case '*':
     case '0'://largest possible uint64_t to ensure namespace is never taken
+      in_patchwork_function = false;
       active_script.push_back(phantom_hash);
       break;
     case 'v'://second largest possible uint64_t to ensure var is called is never taken
@@ -78,16 +81,21 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location) {
 
 void convert_codex_to_hash() {
   constexpr uint8_t hash_location = 1;
+  bool in_patchwork_function = false;
+  uint64_t function_line_counter = phantom_line;
   for (uint64_t i = 0; i < script_reader.size(); i++) {
+    if (in_patchwork_function == true) {function_line_counter++;}
     //cout<<"HashBook["<<script_reader[i]<<"]"<<i<<endl;//this line is for codex debugging
     switch (script_reader[i][hash_location]) {
       case '#':
-        convert_codex_to_hash_var(i, hash_location);
+        convert_codex_to_hash_var(i, hash_location, in_patchwork_function, function_line_counter);
         break;
       default:
         codex_id+=COREFC(script_reader[i].c_str());
         active_script.push_back(COREFC(script_reader[i].c_str()));
         if (script_reader[i]=="f") {
+          in_patchwork_function = true;
+          function_line_counter = phantom_line;
           i++;
           script_reader[i] = "*"+script_reader[i];
           codex_id+=COREFC(script_reader[i].c_str());

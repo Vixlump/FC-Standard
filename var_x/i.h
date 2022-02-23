@@ -4,6 +4,7 @@ void input_output_var();
 void input_output_group();
 void input_output();
 void input_string();
+void input_inspect();
 
 void input_stream() {
   do {
@@ -14,6 +15,9 @@ void input_stream() {
         break;
       case COREFC("+string"):
         input_string();
+        break;
+      case COREFC("+inspect"):
+        input_inspect();
         break;
       //standard:
       case COREFC("i*")://sexit
@@ -69,6 +73,10 @@ void input_output() {
         break;
     }
   } loop;
+}
+
+void input_inspect() {
+  
 }
 
 void input_output_var() {
