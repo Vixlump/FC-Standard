@@ -159,7 +159,30 @@ void control_case() {
 	}
 }
 void control_if() {
-
+	do {
+ 		fc_getline();
+ 		switch(active_script[line]) {
+ 			case COREFC("_int"):
+ 			case COREFC("_int64"):
+ 				break;
+ 			case COREFC("_int32"):
+ 				break;
+ 			case COREFC("_int16"):
+ 				break;
+ 			case COREFC("_int8"):
+ 				break;
+ 			case COREFC("_bool"):
+ 				break;
+ 			case COREFC("_triple"):
+ 				break;
+ 			case COREFC("_double"):
+ 				break;
+ 			case COREFC("_float"):
+ 				break;
+ 			case COREFC("_string"):
+ 				break;
+ 		}
+	} loop;
 }
 void control_lock() {
 

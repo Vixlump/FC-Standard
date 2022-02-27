@@ -196,84 +196,346 @@ void math_function() {
 void math_graph() {
 
 }
-void math_cal() {
-	uint16_t math_var_type = actiontype::action_int64;
-	uint64_t math_output_var;
-	uint16_t math_operator;
+
+template <typename T>
+T math_cal_return(T input) {
 	fc_getline();
-	switch(active_script[line]) {
-		case COREFC("_int64"):
-			math_var_type = actiontype::action_int64;
+	switch (active_script[line]) {
+		case COREFC("+"):
+			fc_getline();
+			if constexpr (is_same<T, int64_t>::value) {
+				return input + codex_get_int64(active_script[line]);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input + codex_get_int32(active_script[line]);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input + codex_get_int16(active_script[line]);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input + codex_get_int8(active_script[line]);
+			} else if constexpr (is_same<T, bool>::value) {
+				return input + codex_get_bool(active_script[line]);
+			} else if constexpr (is_same<T, triple>::value) {
+				return input + codex_get_triple(active_script[line]);
+			} else if constexpr (is_same<T, double>::value) {
+				return input + codex_get_double(active_script[line]);
+			} else if constexpr (is_same<T, float>::value) {
+				return input + codex_get_float(active_script[line]);
+			} else if constexpr (is_same<T, string>::value) {
+				return input + codex_get_string(active_script[line]);
+			}
 			break;
-		case COREFC("_int32"):
-			math_var_type = actiontype::action_int32;
+		case COREFC("-"):
+			fc_getline();
+			if constexpr (is_same<T, int64_t>::value) {
+				return input - codex_get_int64(active_script[line]);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input - codex_get_int32(active_script[line]);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input - codex_get_int16(active_script[line]);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input - codex_get_int8(active_script[line]);
+			} else if constexpr (is_same<T, bool>::value) {
+				return input - codex_get_bool(active_script[line]);
+			} else if constexpr (is_same<T, triple>::value) {
+				return input - codex_get_triple(active_script[line]);
+			} else if constexpr (is_same<T, double>::value) {
+				return input - codex_get_double(active_script[line]);
+			} else if constexpr (is_same<T, float>::value) {
+				return input - codex_get_float(active_script[line]);
+			}
 			break;
-		case COREFC("_int16"):
-			math_var_type = actiontype::action_int16;
+		case COREFC("*"):
+			fc_getline();
+			if constexpr (is_same<T, int64_t>::value) {
+				return input * codex_get_int64(active_script[line]);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input * codex_get_int32(active_script[line]);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input * codex_get_int16(active_script[line]);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input * codex_get_int8(active_script[line]);
+			} else if constexpr (is_same<T, bool>::value) {
+				return input * codex_get_bool(active_script[line]);
+			} else if constexpr (is_same<T, triple>::value) {
+				return input * codex_get_triple(active_script[line]);
+			} else if constexpr (is_same<T, double>::value) {
+				return input * codex_get_double(active_script[line]);
+			} else if constexpr (is_same<T, float>::value) {
+				return input * codex_get_float(active_script[line]);
+			}
 			break;
-		case COREFC("_int8"):
-			math_var_type = actiontype::action_int8;
+		case COREFC("/"):
+			fc_getline();
+			if constexpr (is_same<T, int64_t>::value) {
+				return input / codex_get_int64(active_script[line]);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input / codex_get_int32(active_script[line]);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input / codex_get_int16(active_script[line]);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input / codex_get_int8(active_script[line]);
+			} else if constexpr (is_same<T, bool>::value) {
+				return input / codex_get_bool(active_script[line]);
+			} else if constexpr (is_same<T, triple>::value) {
+				return input / codex_get_triple(active_script[line]);
+			} else if constexpr (is_same<T, double>::value) {
+				return input / codex_get_double(active_script[line]);
+			} else if constexpr (is_same<T, float>::value) {
+				return input / codex_get_float(active_script[line]);
+			}
 			break;
-		case COREFC("_bool"):
-			math_var_type = actiontype::action_bool;
+		case COREFC("^"):
+			fc_getline();
+			if constexpr (is_same<T, int64_t>::value) {
+				return pow(input, codex_get_int64(active_script[line]));
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return pow(input, codex_get_int32(active_script[line]));
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return pow(input, codex_get_int16(active_script[line]));
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return pow(input, codex_get_int8(active_script[line]));
+			} else if constexpr (is_same<T, bool>::value) {
+				return pow(input, codex_get_bool(active_script[line]));
+			} else if constexpr (is_same<T, triple>::value) {
+				return pow(input, codex_get_triple(active_script[line]));
+			} else if constexpr (is_same<T, double>::value) {
+				return pow(input, codex_get_double(active_script[line]));
+			} else if constexpr (is_same<T, float>::value) {
+				return pow(input, codex_get_float(active_script[line]));
+			}
 			break;
-		case COREFC("_triple"):
-			math_var_type = actiontype::action_triple;
+		case COREFC("%"):
+			fc_getline();
+			if constexpr (is_same<T, int64_t>::value) {
+				return input % codex_get_int64(active_script[line]);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input % codex_get_int32(active_script[line]);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input % codex_get_int16(active_script[line]);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input % codex_get_int8(active_script[line]);
+			} else if constexpr (is_same<T, bool>::value) {
+				return input % codex_get_bool(active_script[line]);
+			}
 			break;
-		case COREFC("_double"):
-			math_var_type = actiontype::action_double;
+		case COREFC("++"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return input++;
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input++;
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input++;
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input++;
+			} else if constexpr (is_same<T, bool>::value) {
+				return !input;
+			} else if constexpr (is_same<T, triple>::value) {
+				return input + 1.0;
+			} else if constexpr (is_same<T, double>::value) {
+				return input + 1.0;
+			} else if constexpr (is_same<T, float>::value) {
+				return input + 1.0;
+			}
 			break;
-		case COREFC("_float"):
-			math_var_type = actiontype::action_float;
+		case COREFC("--"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return input--;
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return input--;
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return input--;
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return input--;
+			} else if constexpr (is_same<T, bool>::value) {
+				return !input;
+			} else if constexpr (is_same<T, triple>::value) {
+				return input - 1.0;
+			} else if constexpr (is_same<T, double>::value) {
+				return input - 1.0;
+			} else if constexpr (is_same<T, float>::value) {
+				return input - 1.0;
+			}
 			break;
-		case COREFC("_string"):
-			math_var_type = actiontype::action_string;
-			break;
-		default:
-		error_stream();
-			break;
-	}
-	fc_getline();
-	math_output_var = active_script[line];
-	fc_getline();
-	switch(active_script[line]) {
-		case COREFC("+")://addition
-		case COREFC("_add"):
-			math_operator = mathstream::madd;
-			break;
-		case COREFC("-")://subtraction
-		case COREFC("_sub"):
-			math_operator = mathstream::msub;
-			break;
-		case COREFC("*")://multiplication
-		case COREFC("_mul"):
-			math_operator = mathstream::mmul;
-			break;
-		case COREFC("/")://division
-		case COREFC("_div"):
-			math_operator = mathstream::mdiv;
-			break;
-		case COREFC("%")://modulose
-		case COREFC("_mod"):
-			math_operator = mathstream::mmod;
-			break;
-		case COREFC("^")://power
-		case COREFC("_pow"):
-			math_operator = mathstream::mpow;
-			break;
-		case COREFC("log")://log
 		case COREFC("_log"):
-			math_operator = mathstream::mlog;
+			if constexpr (is_same<T, int64_t>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, bool>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, triple>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, double>::value) {
+				return log(input);
+			} else if constexpr (is_same<T, float>::value) {
+				return log(input);
+			}
 			break;
-		case COREFC("root")://root
-		case COREFC("_root"):
-			math_operator = mathstream::mroot;
+		case COREFC("_sqrt"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, bool>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, triple>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, double>::value) {
+				return sqrt(input);
+			} else if constexpr (is_same<T, float>::value) {
+				return sqrt(input);
+			}
+			break;
+		case COREFC("_cbrt"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, bool>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, triple>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, double>::value) {
+				return cbrt(input);
+			} else if constexpr (is_same<T, float>::value) {
+				return cbrt(input);
+			}
+			break;
+		case COREFC("_cos"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, bool>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, triple>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, double>::value) {
+				return cos(input);
+			} else if constexpr (is_same<T, float>::value) {
+				return cos(input);
+			}
+			break;
+		case COREFC("_sin"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, bool>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, triple>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, double>::value) {
+				return sin(input);
+			} else if constexpr (is_same<T, float>::value) {
+				return sin(input);
+			}
+			break;
+		case COREFC("_tan"):
+			if constexpr (is_same<T, int64_t>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, int32_t>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, int16_t>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, int8_t>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, bool>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, triple>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, double>::value) {
+				return tan(input);
+			} else if constexpr (is_same<T, float>::value) {
+				return tan(input);
+			}
 			break;
 		default:
 			error_stream();
 			break;
 	}
-	fc_getline();
+	error_stream();
+	return 0;
+}
+
+void math_cal() {
+	uint64_t input;
+	do {
+		fc_getline();
+		switch(active_script[line]) {
+			case COREFC("_int"):
+			case COREFC("_int64"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_int64(input, math_cal_return<int64_t>(codex_get_int64(input)));
+				break;
+			case COREFC("_int32"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_int32(input, math_cal_return<int32_t>(codex_get_int32(input)));
+				break;
+			case COREFC("_int16"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_int16(input, math_cal_return<int16_t>(codex_get_int16(input)));
+				break;
+			case COREFC("_int8"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_int8(input, math_cal_return<int8_t>(codex_get_int8(input)));
+				break;
+			case COREFC("_bool"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_bool(input, math_cal_return<bool>(codex_get_bool(input)));
+				break;
+			case COREFC("_triple"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_triple(input, math_cal_return<triple>(codex_get_triple(input)));
+				break;
+			case COREFC("_double"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_double(input, math_cal_return<double>(codex_get_double(input)));
+				break;
+			case COREFC("_float"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_float(input, math_cal_return<float>(codex_get_float(input)));
+				break;
+			case COREFC("_string"):
+				fc_getline();
+				input = active_script[line];
+				codex_store_string(input, math_cal_return<string>(codex_get_string(input)));
+				break;
+			case COREFC("_ret"):
+				return;
+			case COREFC("_array"):
+			default:
+			error_stream();
+				break;
+		}
+	} loop;
 
 }
 void math_set() {

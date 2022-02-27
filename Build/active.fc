@@ -1,59 +1,20 @@
-/#Function Test:
-**
 f
 main
-/#Bool Arg Test
-//A
-*flag
-+hash
-//A
-*action
-+var
-test1
-
-*c
-+case
-_hash
-test1
-true
-@contex.jump.true
-false
-@contex.jump.false
+*v
++store
+_string
+value
+s#Hello World
 _ret
-+goto
-@contex.jump.exit
-
-@#@contex.jump.true
-~~~*
+v*
 *i
 +output
 _line
-s#test1 = true
+v#
+value
 _ret
 i*
-*c
-+goto
-@contex.jump.exit
-
-@#@contex.jump.false
-~~~*
-*i
-+output
-_line
-s#test1 = false
-_ret
-i*
-*c
-+goto
-@contex.jump.exit
-
-@#@contex.jump.exit
-~~~*
-*r
-**
-+terminate
 ?*
 0#
 
 *main
-true

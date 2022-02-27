@@ -75,6 +75,7 @@ using namespace this_thread;
    //IOS = 8
    //PineTime = 9
    //Oculus = 10
+   //Custom = 11
 #define FCPLATFORM 3
 
 //var z deps

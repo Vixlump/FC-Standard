@@ -169,6 +169,26 @@ void action_overloading_flag() {
 void action_overloading_skip() {
 	line_bak[line_bak.size()-1]++;
 }
+
+void action_overlaoding_purge() {
+	do {
+		fc_getline();
+		switch(active_script[line]) {
+			case COREFC("purge*"):
+				return;
+			default:
+				for (uint64_t i = 0; i < function_assignments.size(); i++) {
+					if (function_assignments[i].name==active_script[line]) {
+						function_assignments.erase(function_assignments.begin()+i);
+						break;
+					}
+				}
+				break;
+
+		}
+	} loop;
+}
+
 void action_overloading_stream() {
 	bool action_loop = false;
 	do {
@@ -191,6 +211,9 @@ void action_overloading_stream() {
 				break;
 			case COREFC("*flag")://define error
 				action_overloading_flag();
+				break;
+			case COREFC("*purge"):
+				action_overlaoding_purge();
 				break;
 			case COREFC("*loop"):
 				action_loop = true;

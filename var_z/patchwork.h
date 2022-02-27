@@ -52,7 +52,11 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
       if (in_patchwork_function==true) {new_assignment_point.line = function_line_counter;} else {
         new_assignment_point.line = input;
       }
-      active_assignments.push_back(new_assignment_point);
+      if (script_reinterpretor[0]=='@') {
+        function_assignments.push_back(new_assignment_point);
+      } else {
+        active_assignments.push_back(new_assignment_point);
+      }
       active_script.push_back(COREFC(""));
       break;
     case '~'://escaped hash can be used to add functions to a program without changing the Codex ID
@@ -68,6 +72,9 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
       break;
     case 'v'://second largest possible uint64_t to ensure var is called is never taken
       active_script.push_back(phantom_var);
+      break;
+    case 'a':
+      active_script.push_back(phantom_array);
       break;
     case '/'://notation
       active_script.push_back(COREFC(""));

@@ -15,6 +15,7 @@ thread_local vector <string> file_name_bak;
 constexpr uint64_t phantom_line = numeric_limits<uint64_t>::max();
 constexpr uint64_t phantom_hash = numeric_limits<uint64_t>::max();
 constexpr uint64_t phantom_var = phantom_hash-1;
+constexpr uint64_t phantom_array = phantom_var-1;
 
 thread_local uint64_t line = 0;
 thread_local vector <uint64_t> line_bak;
@@ -42,6 +43,7 @@ thread_local vector <double> active_double;
 thread_local vector <triple> active_triple;
 struct assignment { uint64_t name; uint64_t line; };
 thread_local vector <assignment> active_assignments;
+thread_local vector <assignment> function_assignments;
 
 struct fc_type_string {uint64_t name;vector <string> value;};
 struct fc_type_int64 {uint64_t name;vector <int64_t> value;};
@@ -197,51 +199,75 @@ inline uint64_t codex_get_assignment(uint64_t name) {
   for (uint64_t i = 0; i < active_assignments.size(); i++) {
     if (active_assignments[i].name==name) {return active_assignments[i].line;}
   }
+  for (uint64_t i2 = 0; i2 < function_assignments.size(); i2++) {
+    if (function_assignments[i2].name==name) {return function_assignments[i2].line;}
+  }
+  cout<<"Contex Error["<<name<<"] is not an assignment point."<<endl;
   exit(42);
 }
 
+inline int64_t codex_get_allint(uint64_t input) {
+  //possible addition
+  return 0;
+}
+
+inline int64_t codex_get_int64(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_int64(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_int64_array(active_script[line-1], codex_get_int64(active_script[line]));
+    default:
+      return active_int64[input];
+  }
+}
 inline string codex_get_string(uint64_t input) {
   switch (input) {
     case phantom_var:
       line++;
       return codex_return_string(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_string_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_string[input];
       
   }
 }
-inline uint64_t codex_get_int32(uint64_t input) {
+inline int64_t codex_get_int32(uint64_t input) {
   switch (input) {
     case phantom_var:
       line++;
       return codex_return_int32(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_int32_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_int32[input];
   }
 }
-inline uint64_t codex_get_int64(uint64_t input) {
-  switch(input) {
-    case phantom_var:
-      line++;
-      return codex_return_int64(active_script[line]);
-    default:
-      return active_int64[input];
-  }
-}
-inline uint16_t codex_get_int16(uint64_t input) {
+inline int16_t codex_get_int16(uint64_t input) {
   switch(input) {
     case phantom_var:
       line++;
       return codex_return_int16(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_int16_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_int16[input];
   }
 }
-inline uint8_t codex_get_int8(uint64_t input) {
+inline int8_t codex_get_int8(uint64_t input) {
   switch(input) {
     case phantom_var:
       line++;
       return codex_return_int8(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_int8_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_int8[input];
   }
@@ -251,6 +277,9 @@ inline bool codex_get_bool(uint64_t input) {
     case phantom_var:
       line++;
       return codex_return_bool(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_bool_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_bool[input];
   }
@@ -260,6 +289,9 @@ inline float codex_get_float(uint64_t input) {
     case phantom_var:
       line++;
       return codex_return_float(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_float_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_float[input];
   }
@@ -269,6 +301,9 @@ inline double codex_get_double(uint64_t input) {
     case phantom_var:
       line++;
       return codex_return_double(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_double_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_double[input];
   }
@@ -278,6 +313,9 @@ inline triple codex_get_triple(uint64_t input) {
     case phantom_var:
       line++;
       return codex_return_triple(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_triple_array(active_script[line-1], codex_get_int64(active_script[line]));
     default:
       return active_triple[input];
   }
