@@ -1,52 +1,7 @@
-f
-main
-*v
-+store
-_string
-name
-s#Hello World3
-_ret
-v*
-
-*c
-+case
-_string
-name
-s#Hello World
-true
-s#Hello World2
-true
-_ret
-+goto
-false
-
-@#true
-~~~*
+c#*i|+output|_line|s#Hello World|_ret|i*
 *i
 +output
 _line
-s#value is Hello World
+s#Hello World 2
 _ret
 i*
-*c
-+goto
-end
-
-@#false
-~~~*
-*i
-+output
-_line
-s#value is not Hello World
-_ret
-i*
-*c
-+goto
-end
-
-
-@#end
-~~~*
-?*
-0#
-*main

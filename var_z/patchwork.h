@@ -79,6 +79,18 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
     case '/'://notation
       active_script.push_back(COREFC(""));
       break;
+    case 'c'://Combiner Hash Escape Merge lables togeather
+      {
+        stringstream xseport(script_reinterpretor);
+        uint64_t i2 = 1;
+        while (xseport.good()) {
+          string xsesubstr;
+          getline(xseport, xsesubstr, '|');
+          script_reader.insert(script_reader.begin() + input + i2, xsesubstr);
+          i2++;
+        }
+        break;
+      }
     default:
       cout<<"Syntax Error Codex Could Not Be Compiled[N="<<file_name<<" L="<<input+1<<"]"<<endl;
       exit(42);
