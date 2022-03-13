@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_C
 
 void control_case();
 void control_if();

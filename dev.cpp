@@ -78,6 +78,13 @@ using namespace this_thread;
    //Custom = 11
 #define FCPLATFORM 3
 
+//Comment out if you do not want to compile with aspectu
+#define ASPECTUFXTOOLS
+
+#ifdef ASPECTUFXTOOLS
+#include<SDL2/SDL.h>
+#endif
+
 //var z deps
 //#include "var_z/int128.h"
 #include "var_z/version.h"
@@ -107,6 +114,9 @@ using namespace this_thread;
 #include "var_x/c.h"
 #include "var_x/i.h"
 #include "var_x/r.h"
+#ifdef ASPECTUFXTOOLS
+#include "var_x/a.h"
+#endif
 #include "var_x/scan.h"
 
 int main(int argc, char *argv[]) {

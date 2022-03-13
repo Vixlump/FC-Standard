@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_I
 
 void input_output_var();
 void input_output_group();

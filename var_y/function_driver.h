@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_FUNCTIONDRIVER
 
 void scan_stream();//super dangerus function declaration, do not try at home. This was done by a spagetti code professional.
 

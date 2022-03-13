@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_OVERLOADER
 #define ACTION_OVERLOAD_OWNER active_script_bak[active_script_bak.size()-1].script[line_bak[line_bak.size()-1]]
 thread_local uint16_t action_flag;
 

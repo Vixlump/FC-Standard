@@ -1,5 +1,5 @@
 #pragma once
-
+#define FCS_R
 void reserved_tap_asm();
 void reserved_tap();
 

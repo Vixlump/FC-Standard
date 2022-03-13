@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_ERROR
 uint64_t deprications = 0;
 uint64_t error_level = 0;
 uint64_t error_cap = 0;

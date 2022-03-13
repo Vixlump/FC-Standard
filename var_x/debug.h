@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_DEBUG
 
 void debug_point() {
   cout<<fc_version<<"[N="<<file_name<<" L="<<line + 1<<" T="<<thread_label<<"]"<<endl;

@@ -3,18 +3,50 @@ main
 *v
 +store
 _string
-value
-s#Hello World
+name
+s#Hello World3
 _ret
 v*
+
+*c
++case
+_string
+name
+s#Hello World
+true
+s#Hello World2
+true
+_ret
++goto
+false
+
+@#true
+~~~*
 *i
 +output
 _line
-v#
-value
+s#value is Hello World
 _ret
 i*
+*c
++goto
+end
+
+@#false
+~~~*
+*i
++output
+_line
+s#value is not Hello World
+_ret
+i*
+*c
++goto
+end
+
+
+@#end
+~~~*
 ?*
 0#
-
 *main

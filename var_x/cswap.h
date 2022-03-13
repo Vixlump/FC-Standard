@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_CSWAP
 
 void channelswap_stream() {
   fc_getline();

@@ -1,7 +1,9 @@
 #pragma once
+#define FCS_ASIGN
+
 void assignment_point() {
-  fc_getline();
   deprications++;
+  fc_getline();
   return;
 }
 

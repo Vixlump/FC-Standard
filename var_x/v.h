@@ -1,7 +1,9 @@
 #pragma once
+#define FCS_V
 void var_convert();
 void var_store_array();
 void var_store();
+void var_array();
 void var_delete();
 void var_swap();
 
@@ -19,6 +21,7 @@ void var_stream() {
         var_swap();
         break;
       case COREFC("+array"):
+        var_array();
         break;
       case COREFC("+allocate"):
         break;
@@ -303,6 +306,29 @@ void var_store_array() {
         error_stream();
         break;
   }
+}
+
+void var_array() {
+  do {
+    fc_getline();
+      switch(active_script[line]) {
+        case COREFC("_push")://accept _front or _back operator
+          break;
+        case COREFC("_pop")://accept _front or _back operator
+          break;
+        case COREFC("_get"):
+          break;
+        case COREFC("_size"):
+          break;
+        case COREFC("_erase"):
+          break;
+        case COREFC("_clear"):
+          break;
+        default:
+          error_stream();
+          break;
+      }
+  } loop;
 }
 
 void var_delete_array() {

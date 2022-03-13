@@ -1,4 +1,5 @@
 #pragma once
+#define FCS_M
 
 enum mathstream {
 	madd,
