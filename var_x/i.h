@@ -60,7 +60,7 @@ void input_output() {
     switch (active_script[line]) {
       case COREFC("_line"):
         fc_getline();
-        cout<<codex_get_string(active_script[line])<<endl;
+        cout<<codex_get_string(active_script[line])<<"\n";
         break;
       case COREFC("_var"):
         input_output_var();
@@ -68,8 +68,11 @@ void input_output() {
       case COREFC("_group"):
         input_output_group();
         break;
-      case COREFC("_break"):
+      case COREFC("_end"):
         cout<<endl;
+        break;
+      case COREFC("_break"):
+        cout<<"\n";
         break;
       case COREFC("_text"):
         fc_getline();
@@ -84,8 +87,38 @@ void input_output() {
   } loop;
 }
 
+void input_inspect_parce() {
+  fc_getline();
+  string inspector_string = codex_get_string(active_script[line]);
+  fc_getline();
+  string delimiter = codex_get_string(active_script[line]);
+  size_t pos = 0;
+  string token;
+  fc_getline();
+  uint64_t i = 0;
+  while ((pos = inspector_string.find(delimiter)) != string::npos) {
+      token = inspector_string.substr(0, pos);
+      codex_add_string_array(active_script[line],token);
+      inspector_string.erase(0, pos + delimiter.length());
+      i++;
+  }
+  codex_add_string_array(active_script[line],inspector_string);
+}
+
 void input_inspect() {
-  
+  do {
+    fc_getline();
+    switch(active_script[line]) {
+      case COREFC("_parce"):
+        input_inspect_parce();
+        break;
+      case COREFC("_ret"):
+        return;
+      default:
+        error_stream();
+        break;
+    }
+  } loop;
 }
 
 void input_output_var() {
@@ -139,8 +172,11 @@ void input_output_group() {
   do {
     fc_getline();
     switch(active_script[line]) {
-      case COREFC("_break"):
+      case COREFC("_end"):
         cout<<endl;
+        break;
+      case COREFC("_break"):
+        cout<<"\n";
         break;
       case COREFC("_var"):
         input_output_var();

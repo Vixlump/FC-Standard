@@ -1,6 +1,11 @@
 /#Zeta Input & Output Library
 ~~~*
 c#f|print
+/#Collect String Data:
 c#//A|*flag|+string|//A|*action|+var|contex.zeta.io.print.output
+/#Output String Data:
 c#*i|+output|_var|_string|contex.zeta.io.print.output|_break|_ret|i*
 c#?*|0#
+c#f|input
+c#?*|0#
+?*

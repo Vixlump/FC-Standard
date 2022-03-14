@@ -141,6 +141,34 @@ inline void codex_store_triple_array(uint64_t name, uint64_t pos, triple value) 
 inline void codex_store_hash_array(uint64_t name, uint64_t pos, uint64_t value) {
   hash_var_array[name][pos] = value;
 }
+//array pushbacks:
+inline void codex_add_string_array(uint64_t name, string value) {
+  string_var_array[name].push_back(value);
+}
+inline void codex_add_int64_array(uint64_t name, int64_t value) {
+  int64_var_array[name].push_back(value);
+}
+inline void codex_add_int32_array(uint64_t name, int32_t value) {
+  int32_var_array[name].push_back(value);
+}
+inline void codex_add_int16_array(uint64_t name, int16_t value) {
+  int16_var_array[name].push_back(value);
+}
+inline void codex_add_int8_array(uint64_t name, int8_t value) {
+  int8_var_array[name].push_back(value);
+}
+inline void codex_add_bool_array(uint64_t name, bool value) {
+  bool_var_array[name].push_back(value);
+}
+inline void codex_add_float_array(uint64_t name, float value) {
+  float_var_array[name].push_back(value);
+}
+inline void codex_add_double_array(uint64_t name, double value) {
+  double_var_array[name].push_back(value);
+}
+inline void codex_add_triple_array(uint64_t name, triple value) {
+  triple_var_array[name].push_back(value);
+}
 
 //return variable:
 inline string codex_return_string(uint64_t name) {
