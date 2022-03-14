@@ -27,5 +27,5 @@ void error_stream() {
         terminate_all();
       }
     }
-    if (error_debug_mode==true) {cout<<"Error["<<error_trace<<"]"<<endl;}
+    if (error_debug_mode==true) {cout<<"Error["<<"N="<<file_name<<" "<<error_trace<<"]"<<endl;}
 }

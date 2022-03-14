@@ -1,7 +1,9 @@
-c#*i|+output|_line|s#Hello World|_ret|i*
-*i
-+output
-_line
-s#Hello World 2
-_ret
-i*
+*~~~
+*<
+s#zeta/numbers
+s#zeta/io
+>*
+**
+c#*print|s#Hello World
+c#*i|+output|_var|_triple|pi|_break|_ret|i*
+c#*i|+input|inputvar|+output|_text|s#Input Value was:|_var|_string|inputvar|_break|_ret|i*

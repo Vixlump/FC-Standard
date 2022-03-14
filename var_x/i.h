@@ -20,6 +20,14 @@ void input_stream() {
       case COREFC("+inspect"):
         input_inspect();
         break;
+      case COREFC("+input"):
+        {
+          fc_getline();
+          string input;
+          cin>>input;
+          codex_store_string(active_script[line], input);
+        }
+        break;
       //standard:
       case COREFC("i*")://sexit
       case COREFC("~~~*")://uexit

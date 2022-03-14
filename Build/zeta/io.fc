@@ -1,0 +1,6 @@
+/#Zeta Input & Output Library
+~~~*
+c#f|print
+c#//A|*flag|+string|//A|*action|+var|contex.zeta.io.print.output
+c#*i|+output|_var|_string|contex.zeta.io.print.output|_break|_ret|i*
+c#?*|0#

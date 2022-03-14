@@ -6,13 +6,16 @@ void channelswap_stream() {
   switch (active_script[line]) {
     case COREFC("*<"):
       {
-        fc_getline();
-        uint64_t i = line;
-        string i2 = file_name;
-        load_codex(codex_get_string(active_script[line]));
-        scan_stream();
-        load_codex(i2);
-        line = i;
+        do {
+          fc_getline();
+          if (active_script[line]==COREFC(">*")) {break;}
+          uint64_t i = line;
+          string i2 = file_name;
+          load_codex(codex_get_string(active_script[line]));
+          scan_stream();
+          load_codex(i2);
+          line = i;
+        } loop;
         break;
       }
     case COREFC("+patch"):

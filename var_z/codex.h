@@ -9,7 +9,7 @@ struct codex_function_swap {
 string original_file_name = "active";
 const string defined_file_extention = ".fc";
 
-thread_local string file_name = "active.fc";
+thread_local string file_name = "active";
 thread_local vector <string> file_name_bak;
 
 constexpr uint64_t phantom_line = numeric_limits<uint64_t>::max();
@@ -98,6 +98,17 @@ inline void codex_store_triple(uint64_t name, triple value) {
 }
 inline void codex_store_hash(uint64_t name, uint64_t value) {
   hash_var[name] = value;
+}
+inline void codex_store_all(uint64_t name, string value) {
+  string_var[name] = value;
+  int64_var[name] = stoll(value.c_str());
+  int32_var[name] = stol(value.c_str());
+  int16_var[name] = stoi(value.c_str());
+  int8_var[name] = stoi(value.c_str());
+  if (value=="true"||stoll(value.c_str())>=1||value=="True"||value=="TRUE") {bool_var[name] = true;} else {bool_var[name] = false;}
+  float_var[name] = stof(value.c_str());
+  double_var[name] = stod(value.c_str());
+  triple_var[name] = stold(value.c_str());
 }
 //array types:
 inline void codex_store_string_array(uint64_t name, uint64_t pos, string value) {

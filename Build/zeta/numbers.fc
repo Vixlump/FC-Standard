@@ -1,25 +1,59 @@
 /#Zeta Numbers Library
 ~~~*
-/#true & false constant
 *v
+/#Number Constants:
 +store
-_int64
-true
-n#1
-_int32
-true
-3#1
-_int16
-true
-1#1
-_int8
-true
-8#1
-_bool
-b#true
-_string
-true
-s#1
+c#_all|true|s#1|_all|false|s#0
+c#_all|zero|s#0|_all|0|s#0
+c#_all|one|s#1|_all|1|s#1
+c#_all|two|s#2|_all|2|s#2
+c#_all|three|s#3|_all|3|s#3
+c#_all|four|s#4|_all|4|s#4
+c#_all|five|s#5|_all|5|s#5
+c#_all|six|s#6|_all|6|s#6
+c#_all|seven|s#7|_all|7|s#7
+c#_all|eight|s#8|_all|8|s#8
+c#_all|nine|s#9|_all|9|s#9
+c#_all|ten|s#10
+c#_all|hundred|s#100
+c#_all|thousand|s#1000
+c#_all|million|s#1000000
+c#_all|billion|s#1000000000
+c#_all|pi|s#3.141592653589793238462643383279502884
+c#_all|pi/2|s#1.57079632679489661923
+c#_all|pi/4|s#0.785398163397448309616
+c#_all|1/pi|s#0.318309886183790671538
+c#_all|2/pi|s#0.636619772367581343076
+c#_all|2/rootpi|s#1.12837916709551257390
+c#_all|root2|s#1.41421356237309504880
+c#_all|root3|s#1.732 050 808
+c#_all|root5|s#2.236 067 977
+c#_all|1/root2|s#0.707106781186547524401
+c#_all|tau|s#6.283 185 307
+c#_all|e|s#2.71828182845904523536
+c#_all|omega|s#0.567143290409783
+c#_all|P2|s#2.295587149392638
+c#_all|golden ratio|s#1.618033988749894
+c#_all|conway|s#1.303577269034296
+c#_all|plastic|s#1.324717957244746
+c#_all|planck|s#6.62607004
+c#_all|G|s#6.67430
+c#_all|sol|s#274
+c#_all|mercury|s#3.7
+c#_all|venus|s#8.87
+c#_all|earth|s#9.807
+c#_all|mars|s#3.721
+c#_all|jupiter|s#24.79
+c#_all|saturn|s#10.44
+c#_all|uranus|s#8.87
+c#_all|neptune|s#11.15
+c#_all|pluto|s#0.62
+c#_all|eris|s#0.82
+c#_all|titan|s#1.352
+c#_all|ceres|s#0.27
+c#_all|luna|s#1.62
+c#_all|europa|s#1.315
 _ret
 v*
 ?*
+

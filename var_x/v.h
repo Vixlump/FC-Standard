@@ -239,7 +239,10 @@ void var_store() {
         codex_store_string(active_script[line], codex_get_string(active_script[line+1]));
         fc_getline();
         break;
-      case COREFC("_var"):
+      case COREFC("_all"):
+        fc_getline();
+        codex_store_all(active_script[line], codex_get_string(active_script[line+1]));
+        fc_getline();
         break;
       case COREFC("_array"):
         var_store_array();

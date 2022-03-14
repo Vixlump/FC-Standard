@@ -92,7 +92,7 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
         break;
       }
     default:
-      cout<<"Syntax Error Codex Could Not Be Compiled[N="<<file_name<<" L="<<input+1<<"]"<<endl;
+      cout<<"Patchwork Error Codex Could Not Be Compiled[N="<<file_name<<" L="<<input+1<<" E="<<script_reader[input]<<"]"<<endl;
       exit(42);
       break;
   }
@@ -127,8 +127,9 @@ void convert_codex_to_hash() {
 }
 
 void load_codex(string input) {
-  file_name = input + defined_file_extention;
-  ifstream new_active_file(file_name);
+  file_name = input;
+  input += defined_file_extention;
+  ifstream new_active_file(input);
   string loader_process_m;
   script_reader.clear();
   while (getline(new_active_file, loader_process_m)) {
