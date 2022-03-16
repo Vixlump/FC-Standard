@@ -1,5 +1,6 @@
 #pragma once
 #define FCS_V
+void var_allocate();
 void var_convert();
 void var_store_array();
 void var_store();
@@ -24,6 +25,7 @@ void var_stream() {
         var_array();
         break;
       case COREFC("+allocate"):
+        var_allocate();
         break;
       case COREFC("+delete"):
         var_delete();
@@ -47,6 +49,47 @@ void var_stream() {
         break;
       case COREFC("@*")://assignment wrap
         assignment_wrap();
+        break;
+      default:
+        error_stream();
+        break;
+    }
+  } loop;
+}
+
+void var_allocate() {
+  do {
+    fc_getline();
+    fc_getline();
+    switch (active_script[line-1]) {
+      case COREFC("_int"):
+      case COREFC("_int64"):
+        break;
+      case COREFC("_int32"):
+        break;
+      case COREFC("_int16"):
+        break;
+      case COREFC("_int8"):
+        break;
+      case COREFC("_bool"):
+        break;
+      case COREFC("_triple"):
+        break;
+      case COREFC("_double"):
+        break;
+      case COREFC("_float"):
+        break;
+      case COREFC("_string"):
+        break;
+      case COREFC("_hash"):
+        break;
+      case COREFC("_ret"):
+        return;
+      case COREFC("_chart"):
+        break;
+      case COREFC("_quantum"):
+        break;
+      case COREFC("_array"):
         break;
       default:
         error_stream();

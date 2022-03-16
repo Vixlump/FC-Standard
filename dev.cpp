@@ -113,6 +113,7 @@ using namespace this_thread;
 #include "var_x/m.h"
 #include "var_x/c.h"
 #include "var_x/i.h"
+#include "var_x/x.h"
 #include "var_x/r.h"
 #ifdef ASPECTUFXTOOLS
 #include "var_x/a.h"

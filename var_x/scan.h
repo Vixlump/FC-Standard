@@ -29,8 +29,11 @@ void scan_stream() {
         goto escape_stream;
       case COREFC("*t")://threading
         goto escape_stream;
+      #ifdef FCS_X
       case COREFC("*x")://external stream
+        xternal_stream();
         goto escape_stream;
+      #endif
       #ifdef FCS_FUNCTIONDRIVER
       case COREFC("f")://define function
         fc_function_create();

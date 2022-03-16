@@ -141,6 +141,28 @@ inline void codex_store_triple_array(uint64_t name, uint64_t pos, triple value) 
 inline void codex_store_hash_array(uint64_t name, uint64_t pos, uint64_t value) {
   hash_var_array[name][pos] = value;
 }
+//allocators
+inline void codex_allocate_int64(uint64_t name) {int64_t input; int64_var.insert(pair<uint64_t,int64_t>(name,input));}
+inline void codex_allocate_int32(uint64_t name) {int32_t input; int32_var.insert(pair<uint64_t,int32_t>(name,input));}
+inline void codex_allocate_int16(uint64_t name) {int16_t input; int16_var.insert(pair<uint64_t,int16_t>(name,input));}
+inline void codex_allocate_int8(uint64_t name) {int8_t input; int8_var.insert(pair<uint64_t,int8_t>(name,input));}
+inline void codex_allocate_bool(uint64_t name) {bool input; bool_var.insert(pair<uint64_t,bool>(name,input));}
+inline void codex_allocate_triple(uint64_t name) {triple input; triple_var.insert(pair<uint64_t,triple>(name,input));}
+inline void codex_allocate_double(uint64_t name) {double input; double_var.insert(pair<uint64_t,double>(name,input));}
+inline void codex_allocate_float(uint64_t name) {float input; float_var.insert(pair<uint64_t,float>(name,input));}
+inline void codex_allocate_string(uint64_t name) {string input; string_var.insert(pair<uint64_t,string>(name,input));}
+inline void codex_allocate_hash(uint64_t name) {uint64_t input; hash_var.insert(pair<uint64_t,uint64_t>(name,input));}
+//inline void codex_allocate_int64_array(uint64_t name) {vector<int64_t> input; int64_var.insert({name,input});}
+//inline void codex_allocate_int32_array(uint64_t name) {vector<int32_t> input; int32_var.insert({name,input});}
+//inline void codex_allocate_int16_array(uint64_t name) {vector<int16_t> input; int16_var.insert({name,input});}
+//inline void codex_allocate_int8_array(uint64_t name) {vector<int8_t> input; int8_var.insert({name,input});}
+//inline void codex_allocate_bool_array(uint64_t name) {vector<bool> input; bool_var.insert({name,input});}
+//inline void codex_allocate_triple_array(uint64_t name) {vector<triple> input; triple_var.insert({name,input});}
+//inline void codex_allocate_double_array(uint64_t name) {vector<double> input; double_var.insert({name,input});}
+//inline void codex_allocate_float_array(uint64_t name) {vector<float> input; float_var.insert({name,input});}
+//inline void codex_allocate_string_array(uint64_t name) {vector<string> input; string_var.insert({name,input});}
+//inline void codex_allocate_hash_array(uint64_t name) {vector<uint64_t> input; hash_var.insert({name,input});}
+
 //array pushbacks:
 inline void codex_add_string_array(uint64_t name, string value) {
   string_var_array[name].push_back(value);
