@@ -1,16 +1,2 @@
-*~~~
-*<
-s#zeta/numbers
-s#zeta/io
->*
-**
-c#*v|+store
-c#_string|value|s#1#;2#;3#;4
-c#_ret|v*
-c#*i|+inspect|_parce|v#|value|s##;|result|_ret
-+output
-c#_text|a#|result|n#0
-c#_text|a#|result|n#1
-c#_text|a#|result|n#2
-c#_text|a#|result|n#3
-c#_break|_ret|i*
+/#Startup Driver
+c#*~~~|a#|_args|n#2

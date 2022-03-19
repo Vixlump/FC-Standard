@@ -68,79 +68,6 @@ map <uint64_t, triple> triple_var;map <uint64_t, vector <triple>> triple_var_arr
 map <uint64_t, uint64_t> hash_var;map <uint64_t, vector <uint64_t>> hash_var_array;
 map <uint64_t, ifstream> chart_var;map <uint64_t, vector <ifstream>> chart_var_array;
 map <uint64_t, ofstream> quantum_var;map <uint64_t, vector <ofstream>> quantum_var_array;
-//store variable:
-inline void codex_store_string(uint64_t name, string value) {
-  string_var[name] = value;
-}
-inline void codex_store_int64(uint64_t name, int64_t value) {
-  int64_var[name] = value;
-}
-inline void codex_store_int32(uint64_t name, int32_t value) {
-  int32_var[name] = value;
-}
-inline void codex_store_int16(uint64_t name, int16_t value) {
-  int16_var[name] = value;
-}
-inline void codex_store_int8(uint64_t name, int8_t value) {
-  int8_var[name] = value;
-}
-inline void codex_store_bool(uint64_t name, bool value) {
-  bool_var[name] = value;
-}
-inline void codex_store_float(uint64_t name, float value) {
-  float_var[name] = value;
-}
-inline void codex_store_double(uint64_t name, double value) {
-  double_var[name] = value;
-}
-inline void codex_store_triple(uint64_t name, triple value) {
-  triple_var[name] = value;
-}
-inline void codex_store_hash(uint64_t name, uint64_t value) {
-  hash_var[name] = value;
-}
-inline void codex_store_all(uint64_t name, string value) {
-  string_var[name] = value;
-  int64_var[name] = stoll(value.c_str());
-  int32_var[name] = stol(value.c_str());
-  int16_var[name] = stoi(value.c_str());
-  int8_var[name] = stoi(value.c_str());
-  if (value=="true"||stoll(value.c_str())>=1||value=="True"||value=="TRUE") {bool_var[name] = true;} else {bool_var[name] = false;}
-  float_var[name] = stof(value.c_str());
-  double_var[name] = stod(value.c_str());
-  triple_var[name] = stold(value.c_str());
-}
-//array types:
-inline void codex_store_string_array(uint64_t name, uint64_t pos, string value) {
-  string_var_array[name][pos] = value;
-}
-inline void codex_store_int64_array(uint64_t name, uint64_t pos, int64_t value) {
-  int64_var_array[name][pos] = value;
-}
-inline void codex_store_int32_array(uint64_t name, uint64_t pos, int32_t value) {
-  int32_var_array[name][pos] = value;
-}
-inline void codex_store_int16_array(uint64_t name, uint64_t pos, int16_t value) {
-  int16_var_array[name][pos] = value;
-}
-inline void codex_store_int8_array(uint64_t name, uint64_t pos, int8_t value) {
-  int8_var_array[name][pos] = value;
-}
-inline void codex_store_bool_array(uint64_t name, uint64_t pos, bool value) {
-  bool_var_array[name][pos] = value;
-}
-inline void codex_store_float_array(uint64_t name, uint64_t pos, float value) {
-  float_var_array[name][pos] = value;
-}
-inline void codex_store_double_array(uint64_t name, uint64_t pos, double value) {
-  double_var_array[name][pos] = value;
-}
-inline void codex_store_triple_array(uint64_t name, uint64_t pos, triple value) {
-  triple_var_array[name][pos] = value;
-}
-inline void codex_store_hash_array(uint64_t name, uint64_t pos, uint64_t value) {
-  hash_var_array[name][pos] = value;
-}
 //allocators
 inline void codex_allocate_int64(uint64_t name) {int64_t input; int64_var.insert(pair<uint64_t,int64_t>(name,input));}
 inline void codex_allocate_int32(uint64_t name) {int32_t input; int32_var.insert(pair<uint64_t,int32_t>(name,input));}
@@ -380,4 +307,89 @@ inline triple codex_get_triple(uint64_t input) {
     default:
       return active_triple[input];
   }
+}
+
+//store variable:
+inline void codex_store_all(uint64_t name, string value) {
+  string_var[name] = value;
+  int64_var[name] = stoll(value.c_str());
+  int32_var[name] = stol(value.c_str());
+  int16_var[name] = stoi(value.c_str());
+  int8_var[name] = stoi(value.c_str());
+  if (value=="true"||stoll(value.c_str())>=1||value=="True"||value=="TRUE") {bool_var[name] = true;} else {bool_var[name] = false;}
+  float_var[name] = stof(value.c_str());
+  double_var[name] = stod(value.c_str());
+  triple_var[name] = stold(value.c_str());
+}
+//array types:
+inline void codex_store_string_array(uint64_t name, uint64_t pos, string value) {
+  string_var_array[name][pos] = value;
+}
+inline void codex_store_int64_array(uint64_t name, uint64_t pos, int64_t value) {
+  int64_var_array[name][pos] = value;
+}
+inline void codex_store_int32_array(uint64_t name, uint64_t pos, int32_t value) {
+  int32_var_array[name][pos] = value;
+}
+inline void codex_store_int16_array(uint64_t name, uint64_t pos, int16_t value) {
+  int16_var_array[name][pos] = value;
+}
+inline void codex_store_int8_array(uint64_t name, uint64_t pos, int8_t value) {
+  int8_var_array[name][pos] = value;
+}
+inline void codex_store_bool_array(uint64_t name, uint64_t pos, bool value) {
+  bool_var_array[name][pos] = value;
+}
+inline void codex_store_float_array(uint64_t name, uint64_t pos, float value) {
+  float_var_array[name][pos] = value;
+}
+inline void codex_store_double_array(uint64_t name, uint64_t pos, double value) {
+  double_var_array[name][pos] = value;
+}
+inline void codex_store_triple_array(uint64_t name, uint64_t pos, triple value) {
+  triple_var_array[name][pos] = value;
+}
+inline void codex_store_hash_array(uint64_t name, uint64_t pos, uint64_t value) {
+  hash_var_array[name][pos] = value;
+}
+inline void codex_store_string(uint64_t name, string value) {
+  //switch (name) {
+    //case phantom_array:
+      //{
+        //line+=2;
+        //name = line;
+        //codex_store_string_array(active_script[name-1], codex_get_int64(active_script[line]), value);
+        //return;
+      //}
+    //default:
+      string_var[name] = value;
+      //return;
+  //}
+}
+inline void codex_store_int64(uint64_t name, int64_t value) {
+  int64_var[name] = value;
+}
+inline void codex_store_int32(uint64_t name, int32_t value) {
+  int32_var[name] = value;
+}
+inline void codex_store_int16(uint64_t name, int16_t value) {
+  int16_var[name] = value;
+}
+inline void codex_store_int8(uint64_t name, int8_t value) {
+  int8_var[name] = value;
+}
+inline void codex_store_bool(uint64_t name, bool value) {
+  bool_var[name] = value;
+}
+inline void codex_store_float(uint64_t name, float value) {
+  float_var[name] = value;
+}
+inline void codex_store_double(uint64_t name, double value) {
+  double_var[name] = value;
+}
+inline void codex_store_triple(uint64_t name, triple value) {
+  triple_var[name] = value;
+}
+inline void codex_store_hash(uint64_t name, uint64_t value) {
+  hash_var[name] = value;
 }

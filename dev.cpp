@@ -121,7 +121,10 @@ using namespace this_thread;
 #include "var_x/scan.h"
 
 int main(int argc, char *argv[]) {
-    load_codex(original_file_name);
-    scan_stream();
-    return 42;
+   for (uint64_t i = 0; i < argc; i++) {
+      codex_add_string_array(COREFC("_args"), argv[i]);
+   }
+   load_codex(original_file_name);
+   scan_stream();
+   return 42;
 }
