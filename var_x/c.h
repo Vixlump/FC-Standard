@@ -159,31 +159,163 @@ void control_case() {
 			break;
 	}
 }
-void control_if() {
-	do {
- 		fc_getline();
- 		switch(active_script[line]) {
- 			case COREFC("_int"):
- 			case COREFC("_int64"):
- 				break;
- 			case COREFC("_int32"):
- 				break;
- 			case COREFC("_int16"):
- 				break;
- 			case COREFC("_int8"):
- 				break;
- 			case COREFC("_bool"):
- 				break;
- 			case COREFC("_triple"):
- 				break;
- 			case COREFC("_double"):
- 				break;
- 			case COREFC("_float"):
- 				break;
- 			case COREFC("_string"):
- 				break;
- 		}
-	} loop;
+
+template<typename T>
+bool control_if_equ(T input1, T input2) {//==
+	if (input1 == input2) {return true;} else {return false;}
+}
+template<typename T>
+bool control_if_not(T input1, T input2) {//!=
+	if (input1 != input2) {return true;} else {return false;}
+}
+template<typename T>
+bool control_if_greater(T input1, T input2) {//>
+	if (input1 > input2) {return true;} else {return false;}
+}
+template<typename T>
+bool control_if_less(T input1, T input2) {//<
+	if (input1 < input2) {return true;} else {return false;}
+}
+template<typename T>
+bool control_if_greaterequ(T input1, T input2) {//>=
+	if (input1 >= input2) {return true;} else {return false;}
+}
+template<typename T>
+bool control_if_lessequ(T input1, T input2) {//<=
+	if (input1 <= input2) {return true;} else {return false;}	
+}
+template<typename T>
+bool control_if_spaceship(T input1, T input2) {//<=>
+	if (input1 == input2 || input1 < input2 || input1 > input2) {return true;} else {return false;}
+}
+template <typename T>
+void control_if_selector(T input1, uint64_t input2, T input3, vector <bool> & control_if_result) {
+		uint16_t control_if_decision = 0;
+		switch (input2) {
+			case COREFC("=="):
+				control_if_result.push_back(control_if_equ<T>(input1, input3));
+				break;
+			case COREFC("<"):
+				control_if_result.push_back(control_if_less<T>(input1, input3));
+				break;
+			case COREFC(">"):
+				control_if_result.push_back(control_if_greater<T>(input1, input3));
+				break;
+			case COREFC("!="):
+				control_if_result.push_back(control_if_not<T>(input1, input3));
+				break;
+			case COREFC(">="):
+				control_if_result.push_back(control_if_greaterequ<T>(input1, input3));
+				break;
+			case COREFC("<="):
+				control_if_result.push_back(control_if_lessequ<T>(input1, input3));
+				break;
+			case COREFC("<=>"):
+				control_if_result.push_back(control_if_spaceship<T>(input1, input3));
+				break;
+			default:
+				error_stream();
+				break;
+		}
+		fc_getline();
+		switch (active_script[line]) {
+			case COREFC("_do"):
+				{
+					bool control_if_willsucseed = false;
+					for (uint64_t i = 0; i < control_if_result.size(); i++) {
+						switch (control_if_decision) {
+							case 0:
+								break;
+							case 1:
+								break;
+							case 2:
+								break;
+							case 3:
+								break;
+							case 4:
+								break;
+							case 5:
+								break;
+							default:
+								error_stream();
+								break;
+						}
+					}
+					if (control_if_willsucseed == true) {
+						control_goto();
+					} else {
+						fc_getline();
+					}
+					return;
+				}
+			case COREFC("_and"):
+				control_if_decision = 0;
+				break;
+			case COREFC("_or"):
+				control_if_decision = 1;
+				break;
+			case COREFC("_xor"):
+				control_if_decision = 2;
+				break;
+			case COREFC("_nand"):
+				control_if_decision = 3;
+				break;
+			case COREFC("_nor"):
+				control_if_decision = 4;
+				break;
+			case COREFC("_xnor"):
+				control_if_decision = 5;
+				break;
+			default:
+				error_stream();
+				break;
+		}
+}
+void control_if() { //c#+if|_int|n#64|==|n#64|go here|else continue
+	vector <bool> control_if_result;
+	fc_getline();
+ 	uint64_t control_if_type = active_script[line];
+ 	do {
+	 	fc_getline();
+		fc_getline();
+		fc_getline();
+	 	switch(control_if_type) {
+	 		case COREFC("_int"):
+	 		case COREFC("_int64"):
+	 			control_if_selector<int64_t>(codex_get_int64(active_script[line-2]), active_script[line-1], codex_get_int64(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_int32"):
+	 			control_if_selector<int32_t>(codex_get_int32(active_script[line-2]), active_script[line-1], codex_get_int32(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_int16"):
+	 			control_if_selector<int16_t>(codex_get_int16(active_script[line-2]), active_script[line-1], codex_get_int16(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_int8"):
+	 			control_if_selector<int8_t>(codex_get_int8(active_script[line-2]), active_script[line-1], codex_get_int8(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_bool"):
+	 			control_if_selector<bool>(codex_get_bool(active_script[line-2]), active_script[line-1], codex_get_bool(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_triple"):
+	 			control_if_selector<triple>(codex_get_triple(active_script[line-2]), active_script[line-1], codex_get_triple(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_double"):
+	 			control_if_selector<double>(codex_get_double(active_script[line-2]), active_script[line-1], codex_get_double(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_float"):
+	 			control_if_selector<float>(codex_get_float(active_script[line-2]), active_script[line-1], codex_get_float(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_string"):
+	 			control_if_selector<string>(codex_get_string(active_script[line-2]), active_script[line-1], codex_get_string(active_script[line]), control_if_result);
+	 			break;
+	 		case COREFC("_hash"):
+	 			control_if_selector<uint64_t>(active_script[line-2], active_script[line-1], active_script[line], control_if_result);
+	 			break;
+	 		default:
+	 			error_stream();
+				break;
+	 	}
+ 	} loop;
 }
 void control_lock() {
 

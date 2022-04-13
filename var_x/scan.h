@@ -25,8 +25,11 @@ void scan_stream() {
         control_stream();
         goto escape_stream;
       #endif
+      #ifdef FCS_F
       case COREFC("*f")://functional stream
+        functional_stream();
         goto escape_stream;
+      #endif
       case COREFC("*t")://threading
         goto escape_stream;
       #ifdef FCS_X

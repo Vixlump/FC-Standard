@@ -1,0 +1,8 @@
+/#Agrigate of all zeta libraries merged into one include for crazy people
+~~~*
+c#*~~~|*<
+s#zeta/io
+s#zeta/numbers
+s#zeta/test
+s#zeta/os
+c#>*|?*

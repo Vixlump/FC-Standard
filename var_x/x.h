@@ -16,6 +16,10 @@ void xternal_stream() {
 				break;
 			case COREFC("+python"):
 				break;
+			case COREFC("+shell"):
+				fc_getline();
+				system(codex_get_string(active_script[line]).c_str());
+				break;
 			//standard:
        		case COREFC("x*")://sexit
         	case COREFC("~~~*")://uexit

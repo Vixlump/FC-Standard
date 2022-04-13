@@ -127,39 +127,43 @@ void input_output_var() {
     case COREFC("_int"):
     case COREFC("_int64"):
       fc_getline();
-      cout<<codex_get_int64(active_script[line]);
+      cout<<codex_return_int64(active_script[line]);
       break;
     case COREFC("_int32"):
       fc_getline();
-      cout<<codex_get_int32(active_script[line]);
+      cout<<codex_return_int32(active_script[line]);
       break;
     case COREFC("_int16"):
       fc_getline();
-      cout<<codex_get_int16(active_script[line]);
+      cout<<codex_return_int16(active_script[line]);
       break;
     case COREFC("_int8"):
       fc_getline();
-      cout<<codex_get_int8(active_script[line]);
+      cout<<codex_return_int8(active_script[line]);
       break;
     case COREFC("_float"):
       fc_getline();
-      cout<<codex_get_float(active_script[line]);
+      cout<<codex_return_float(active_script[line]);
       break;
     case COREFC("_double"):
       fc_getline();
-      cout<<codex_get_double(active_script[line]);
+      cout<<codex_return_double(active_script[line]);
       break;
     case COREFC("_triple"):
       fc_getline();
-      cout<<codex_get_triple(active_script[line]);
+      cout<<codex_return_triple(active_script[line]);
       break;
     case COREFC("_bool"):
       fc_getline();
-      cout<<codex_get_bool(active_script[line]);
+      cout<<codex_return_bool(active_script[line]);
       break;
     case COREFC("_string"):
       fc_getline();
-      cout<<codex_get_string(active_script[line]);
+      cout<<codex_return_string(active_script[line]);
+      break;
+    case COREFC("_hash"):
+      fc_getline();
+      cout<<codex_return_hash(active_script[line]);
       break;
     case COREFC("_chart"):
       break;

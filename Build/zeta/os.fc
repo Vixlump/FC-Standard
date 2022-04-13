@@ -1,0 +1,8 @@
+/#Zeta Input & Output Library
+~~~*
+c#f|system
+/#Collect String Data:
+c#//A|*flag|+string|//A|*action|+var|contex.zeta.os.system.command
+/#Run System Command From String
+c#*x|+shell|v#|contex.zeta.os.system.command|x*
+c#?*|0#

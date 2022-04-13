@@ -171,7 +171,7 @@ void action_overloading_skip() {
 	line_bak[line_bak.size()-1]++;
 }
 
-void action_overlaoding_purge() {
+void action_overloading_purge() {
 	do {
 		fc_getline();
 		switch(active_script[line]) {
@@ -188,6 +188,16 @@ void action_overlaoding_purge() {
 
 		}
 	} loop;
+}
+
+void action_overloading_overload() {
+	fc_getline();
+	uint64_t input1 = codex_get_hash(active_script[line]);
+	fc_getline();
+	uint64_t input2 = codex_get_hash(active_script[line]);
+	for (uint64_t i = 0; i < active_script.size(); i++) {
+		if (active_script[i]==input1) {active_script[i] = input2;}
+	}
 }
 
 void action_overloading_stream() {
@@ -213,8 +223,11 @@ void action_overloading_stream() {
 			case COREFC("*flag")://define error
 				action_overloading_flag();
 				break;
+			case COREFC("*overload"):
+				action_overloading_overload();
+				break;
 			case COREFC("*purge"):
-				action_overlaoding_purge();
+				action_overloading_purge();
 				break;
 			case COREFC("*loop"):
 				action_loop = true;

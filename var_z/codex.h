@@ -118,6 +118,9 @@ inline void codex_add_double_array(uint64_t name, double value) {
 inline void codex_add_triple_array(uint64_t name, triple value) {
   triple_var_array[name].push_back(value);
 }
+inline void codex_add_hash_array(uint64_t name, uint64_t value) {
+  hash_var_array[name].push_back(value);
+}
 
 //return variable:
 inline string codex_return_string(uint64_t name) {
@@ -309,9 +312,23 @@ inline triple codex_get_triple(uint64_t input) {
   }
 }
 
+inline uint64_t codex_get_hash(uint64_t input) {
+  switch(input) {
+    case phantom_var:
+      line++;
+      return codex_return_hash(active_script[line]);
+    case phantom_array:
+        line+=2;
+        return codex_return_hash_array(active_script[line-1], codex_get_int64(active_script[line]));
+    default:
+      return input;
+  }
+}
+
 //store variable:
 inline void codex_store_all(uint64_t name, string value) {
   string_var[name] = value;
+  hash_var[name] = stoull(value.c_str());
   int64_var[name] = stoll(value.c_str());
   int32_var[name] = stol(value.c_str());
   int16_var[name] = stoi(value.c_str());
@@ -353,18 +370,7 @@ inline void codex_store_hash_array(uint64_t name, uint64_t pos, uint64_t value) 
   hash_var_array[name][pos] = value;
 }
 inline void codex_store_string(uint64_t name, string value) {
-  //switch (name) {
-    //case phantom_array:
-      //{
-        //line+=2;
-        //name = line;
-        //codex_store_string_array(active_script[name-1], codex_get_int64(active_script[line]), value);
-        //return;
-      //}
-    //default:
-      string_var[name] = value;
-      //return;
-  //}
+  string_var[name] = value;
 }
 inline void codex_store_int64(uint64_t name, int64_t value) {
   int64_var[name] = value;
