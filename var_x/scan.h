@@ -30,8 +30,11 @@ void scan_stream() {
         functional_stream();
         goto escape_stream;
       #endif
+      #ifdef FCS_T
       case COREFC("*t")://threading
+        threading_stream();
         goto escape_stream;
+      #endif
       #ifdef FCS_X
       case COREFC("*x")://external stream
         xternal_stream();
