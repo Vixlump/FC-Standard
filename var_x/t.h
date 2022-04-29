@@ -70,7 +70,7 @@ void threading_thread() {
 	} while(i==true);
 	adapted_threads++;
 	known_threads++;
-	var_thread.push_back(threading_thread_new, input);
+	var_thread.push_back(thread(threading_thread_new, input));
 }
 void threading_unite() {
 

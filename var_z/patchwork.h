@@ -63,7 +63,7 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
       active_script.push_back(COREFC(script_reinterpretor.c_str()));
       break;  
     case '#':
-      active_script.push_back(strtoul(script_reinterpretor.c_str()));
+      active_script.push_back(stoull(script_reinterpretor.c_str()));
       break;
     case '*':
     case '0'://largest possible uint64_t to ensure namespace is never taken

@@ -50,7 +50,7 @@ void reserved_tap() {
 		fc_getline();
 		switch(active_script[line]) {
 			case COREFC("_threading"):
-				reserved_tap_codex();
+				reserved_tap_threading();
 				break;
 			case COREFC("_debug"):
 				fc_getline();
