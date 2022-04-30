@@ -1,0 +1,27 @@
+*i
++output
+_line
+s#Before Thread Is Called
+_ret
+i*
+c#**|/#Debug from Thread 0
+*t
++thread
+*i
++output
+_line
+s#Hello From Called Thread
+_ret
+c#**|/#Debug from Thread 1
+i*
+?*
+//T
++adapt
+##1
+t*
+*i
++output
+_line
+s#After Thread Is Called
+_ret
+i*

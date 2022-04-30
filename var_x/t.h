@@ -12,14 +12,19 @@ void threading_stream() {
 		fc_getline();
 		switch (active_script[line]) {
 			case COREFC("+thread"):
+				threading_thread();
 				break;
 			case COREFC("+unite"):
+				threading_unite();
 				break;
 			case COREFC("+detach"):
+				threading_detach();
 				break;
 			case COREFC("+adapt"):
+				threading_adapt();
 				break;
 			case COREFC("+multi"):
+				threading_multi();
 				break;
 			//standard:
        		case COREFC("t*")://sexit
@@ -78,13 +83,15 @@ void threading_unite() {
 void threading_detach() {
 	fc_getline();
 	uint64_t i = codex_get_hash(active_script[line]);
-	var_thread[i].detach();
+	if (i == 0ull) {cout<<"Main Thread Is Unmaintained, Program Will Terminate\n";exit(42);}
+	var_thread[i-1ull].detach();
 }
 void threading_adapt() {
 	fc_getline();
 	uint64_t i = codex_get_hash(active_script[line]);
-	var_thread[i].join();
-	var_thread.erase(var_thread.begin()+i);
+	if (i == 0ull) {cout<<"Main Thread Was Adapted Into The Ether, Program Will Terminate\n";exit(42);}
+	var_thread[i-1ull].join();
+	var_thread.erase(var_thread.begin()+(i-1ull));
 }
 void threading_multi() {
 
