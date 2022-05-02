@@ -1,0 +1,6 @@
+*i
++output
+_line
+s#This line was appended from another fc script file
+_ret
+i*

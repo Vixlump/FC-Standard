@@ -1,0 +1,14 @@
+*i
++output
+_line
+s#Before
+_ret
+i*
+&#testappendpatch2
+*i
++output
+_line
+s#After
+_ret
+i*
+**
