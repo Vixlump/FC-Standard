@@ -175,8 +175,13 @@ void action_overloading_purge() {
 	do {
 		fc_getline();
 		switch(active_script[line]) {
+			case COREFC("+frame"):
+				fc_getline();
+				fc_functions.erase(active_script[line]);
+				break;
 			case COREFC("purge*"):
 				return;
+			case COREFC("+@"):
 			default:
 				for (uint64_t i = 0; i < function_assignments.size(); i++) {
 					if (function_assignments[i].name==active_script[line]) {

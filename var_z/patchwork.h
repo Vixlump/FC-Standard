@@ -46,6 +46,9 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
       active_string.push_back(script_reinterpretor);
       active_script.push_back(active_string.size()-1);
       break;
+    case '#':
+      active_script.push_back(stoull(script_reinterpretor.c_str()));
+      break;
     case '@'://assignment
       assignment new_assignment_point;
       new_assignment_point.name = COREFC(script_reinterpretor.c_str());
@@ -61,10 +64,20 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
       break;
     case '~'://escaped hash can be used to add functions to a program without changing the Codex ID
       active_script.push_back(COREFC(script_reinterpretor.c_str()));
-      break;  
-    case '#':
-      active_script.push_back(stoull(script_reinterpretor.c_str()));
       break;
+    case '&'://append script and place it right in between this hash and the next statement
+      {
+        uint64_t append_i2 = 1;
+        script_reinterpretor += defined_file_extention;
+        ifstream new_append_file(script_reinterpretor);
+        string appended_process_m;
+        while (getline(new_append_file, appended_process_m)) {
+          script_reader.insert(script_reader.begin() + input + append_i2, appended_process_m);
+          append_i2++;
+        }
+        new_append_file.close();
+        break;
+      }
     case '*':
     case '0'://largest possible uint64_t to ensure namespace is never taken
       in_patchwork_function = false;
