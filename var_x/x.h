@@ -18,7 +18,7 @@ void xternal_stream() {
 				break;
 			case COREFC("+shell"):
 				fc_getline();
-				system(codex_get_string(active_script[line]).c_str());
+				codex_store_int32(COREFC("_shell"), system(codex_get_string(active_script[line]).c_str()));
 				break;
 			//standard:
        		case COREFC("x*")://sexit

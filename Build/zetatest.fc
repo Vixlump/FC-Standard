@@ -1,0 +1,12 @@
+*~~~
+*<
+s#zeta/test
+s#zeta/io
+>*
+@#thing
+~~~*
+*print
+s#HEllo World
+*c
++goto
+thing

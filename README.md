@@ -1,6 +1,7 @@
 # FC-Standard
 Framework Command Standard is an implementation of the FC Programming Language designed to provide a standard programming interface with graphics options across all platforms.
 
+Wiki: https://lumpology.com/docs/fc-standard-documentation/
 
 
 Version System: (Will come into effect after 1.0.0.R)
@@ -52,3 +53,15 @@ More Example Version Updates:
 1.1.0.R
 
 1.1.0.Q
+
+Platforms:
+Future Packages will be provided for Windows, Mac OSX, Android, Ubuntu Touch and FreeBSD.
+Planned Linux Package Support: Binary, AppImage, Debian(deb), Snapcraft(snapd), Flathub(flatpak), AUR(rpm), Open Store(clickable), Gentoo(source code lol)
+
+Dependancies:
+SDL2, SDL_Image (planned to be removed) (can be compiled without by removing dev.cpp #define ASPECTUFXTOOLS)
+C++ 17 or higher (C++ 14 would work but is untested)
+exprtk (is included in package, may need to be swapped for non linux operating systems)
+FC is tested on Ubuntu 22.04LTS using the GNU Compiler Collection, other compilers may work but are untested.
+
+(planned future external deps include: UIRN(Unique ID Random Number) Hasher[hash.h], Patchwork[patchwork.h & codex.h], VixInt128[int128.h])

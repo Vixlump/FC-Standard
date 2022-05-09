@@ -1,0 +1,10 @@
+*x
++shell
+s#nano demo.txt
+x*
+*i
++output
+_line
+s#nano concluded
+_ret
+i*

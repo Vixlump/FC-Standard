@@ -126,6 +126,7 @@ int main(int argc, char *argv[]) {
    for (uint64_t i = 0; i < argc; i++) {
       codex_add_string_array(COREFC("_args"), argv[i]);
    }
+      codex_store_string(COREFC("_version"), fc_version);
    load_codex(original_file_name);
    scan_stream();
    return 42;

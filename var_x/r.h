@@ -3,6 +3,7 @@
 void reserved_tap_threading();
 void reserved_tap_asm();
 void reserved_tap();
+void reserved_shell();
 
 void reserved_stream() {
 	do {
