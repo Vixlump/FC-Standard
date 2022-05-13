@@ -1,0 +1,12 @@
+## Syntax highlighting for fc files.
+
+syntax fc "\.fc?$"
+magic "FC Script"
+comment "/#"
+
+# Core Libs
+color red "\<*a|*c|*f|*i|*m|*r|*t|*v|*x\>"
+color green "\<*~~~|~~~*|?*|**\>"
+
+#Patchwork Labels
+color brightcyan ""

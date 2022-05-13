@@ -1,0 +1,15 @@
+{
+    "name": "fc.lumpology",
+    "description": "something, will change lator",
+    "architecture": "@CLICK_ARCH@",
+    "title": "FC",
+    "hooks": {
+        "fc": {
+            "apparmor": "fc.apparmor",
+            "desktop":  "fc.desktop"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "Cohen ter Heide <support@lumpology.com>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
