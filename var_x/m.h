@@ -54,7 +54,7 @@ void math_stream() {
           		assignment_wrap();
           		break;
       		default:
-        		error_stream();
+        		error_stream("*m->*error");
         		break;
         }
 	} loop;
@@ -101,7 +101,7 @@ void math_function_define(vector<T> & i, uint16_t vartype) {
 			codex_store_int8(active_script[line], static_cast<int8_t>(math_expression.value()));
 			break;
 		default:
-			error_stream();
+			error_stream("+function->_var->*error");
 			break;
 	}
 }
@@ -190,7 +190,7 @@ void math_function() {
 				break;
 			}
 		default:
-			error_stream();
+			error_stream("+function->*error");
 			break;
 	}
 }
@@ -471,10 +471,10 @@ T math_cal_return(T input) {
 			}
 			break;
 		default:
-			error_stream();
+			error_stream("+cal->_var->*error");
 			break;
 	}
-	error_stream();
+	error_stream("+cal->_var->*error");
 	return 0;
 }
 
@@ -533,7 +533,7 @@ void math_cal() {
 				return;
 			case COREFC("_array"):
 			default:
-			error_stream();
+			error_stream("+cal->*error");
 				break;
 		}
 	} loop;

@@ -39,7 +39,7 @@ void reserved_stream() {
           		assignment_wrap();
           		break;
       		default:
-        		error_stream();
+        		error_stream("*r->*error");
         		break;
 		}
 	} loop;
@@ -76,7 +76,7 @@ void reserved_tap() {
 			case COREFC("_ret"):
 				return;
 			default:
-				error_stream();
+				error_stream("+tap->*error");
 				break;
 		}
 	} loop;
@@ -107,7 +107,7 @@ void reserved_tap_threading() {
 				break;
 			}
 		default:
-			error_stream();
+			error_stream("+tap->_threading->*error");
 			break;
 	}
 }

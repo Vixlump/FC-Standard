@@ -59,9 +59,14 @@ Future Packages will be provided for Windows, Mac OSX, Android, Ubuntu Touch and
 Planned Linux Package Support: Binary, AppImage, Debian(deb), Snapcraft(snapd), Flathub(flatpak), AUR(rpm), Open Store(clickable), Gentoo(source code lol)
 
 Dependancies:
-SDL2, SDL_Image (planned to be removed) (can be compiled without by removing dev.cpp #define ASPECTUFXTOOLS)
-C++ 17 or higher (C++ 14 would work but is untested)
-exprtk (is included in package, may need to be swapped for non linux operating systems)
+SDL2 (planned to be removed)
+SDL_Image (planned to be removed)
+libcurl (tested using sudo apt-get install libcurl4-gnutls-dev on Ubuntu)
+(can be compiled without dependancies by removing line from dev.cpp #define ASPECTUFXTOOLS)
+C++ 17 or higher (C++ 14 would work but is untested as we try to use modern features when ever we can)
+
+exprtk (header only include) (is included in package, may need to be swapped for non linux operating systems)
 FC is tested on Ubuntu 22.04LTS using the GNU Compiler Collection, other compilers may work but are untested.
+We make no promices to use Standard C++, if it works and is cross platform we use it.
 
 (planned future external deps include: UIRN(Unique ID Random Number) Hasher[hash.h], Patchwork[patchwork.h & codex.h], VixInt128[int128.h])

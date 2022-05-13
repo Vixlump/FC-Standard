@@ -51,7 +51,7 @@ void var_stream() {
         assignment_wrap();
         break;
       default:
-        error_stream();
+        error_stream("*v->*error");
         break;
     }
   } loop;
@@ -92,7 +92,7 @@ void var_allocate() {
       case COREFC("_array"):
         break;
       default:
-        error_stream();
+        error_stream("+allocate->*error");
         break;
     }
   } loop;
@@ -185,7 +185,7 @@ void var_convert_numbers(T input) {
       }
       break;
     default:
-      error_stream();
+      error_stream("+convert->_var->*error");
       break;
   }
 }
@@ -238,7 +238,7 @@ void var_convert() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+convert->*error");
         break;
     }
   } loop;
@@ -310,7 +310,7 @@ void var_store() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+store->*error");
         break;
     }
   } loop;
@@ -371,7 +371,7 @@ void var_store_array() {
         fc_getline();fc_getline();
         break;
       default:
-        error_stream();
+        error_stream("+store->_array->*error");
         break;
   }
 }
@@ -393,7 +393,7 @@ void var_array() {
         case COREFC("_clear"):
           break;
         default:
-          error_stream();
+          error_stream("+array->*error");
           break;
       }
   } loop;
@@ -454,7 +454,7 @@ void var_delete_array() {
       hash_var_array.erase(active_script[line]);
       break;
     default:
-      error_stream();
+      error_stream("+delete->_array->*error");
       break;
   }
 }
@@ -510,7 +510,7 @@ void var_delete() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+delete->*error");
         break;
     }
   } loop;
@@ -624,7 +624,7 @@ void var_swap() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+swap->*error");
         break;
     }
   } loop;

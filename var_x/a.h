@@ -59,7 +59,7 @@ void aspectu_stream() {
           		assignment_wrap();
           		break;
 			default:
-				error_stream();
+				error_stream("*a->*error");
 				break;
 		}
 	} loop;
@@ -90,7 +90,7 @@ void AspectuDef() {
 			case COREFC("_ret"):
 				return;
 			default:
-				error_stream();
+				error_stream("+AspectuDev->*error");
 				break;
 		}
 	} loop;
@@ -102,7 +102,7 @@ void AspectuKit() {
 			case COREFC("_ret"):
 				return;
 			default:
-				error_stream();
+				error_stream("+AspectuKit->*error");
 				break;
 		}
 	} loop;
@@ -159,7 +159,7 @@ void AspectuGL() {
 			case COREFC("_ret"):
 				return;
 			default:
-				error_stream();
+				error_stream("+AspectuGL->*error");
 				break;
 		}
 	} loop;

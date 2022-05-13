@@ -47,7 +47,7 @@ void input_stream() {
         assignment_wrap();
         break;
       default://error trigger
-        error_stream();
+        error_stream("*i->*error");
         break;
     }
   } loop;
@@ -81,7 +81,7 @@ void input_output() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+output->*error");
         break;
     }
   } loop;
@@ -115,7 +115,7 @@ void input_inspect() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+inspect->*error");
         break;
     }
   } loop;
@@ -168,7 +168,7 @@ void input_output_var() {
     case COREFC("_chart"):
       break;
     default:
-      error_stream();
+      error_stream("+output->_var->*error");
       break;
   }
 }
@@ -211,7 +211,7 @@ void input_string() {
       case COREFC("_ret"):
         return;
       default:
-        error_stream();
+        error_stream("+string->*error");
         break;
     }
   } loop;

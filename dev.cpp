@@ -83,14 +83,15 @@ using namespace this_thread;
 
 #ifdef ASPECTUFXTOOLS
 #include<SDL2/SDL.h>
+#include<curl/curl.h>
 #endif
 
 //var z deps
 //#include "var_z/int128.h"
 #include "var_z/version.h"
 #include "var_z/hash.h"
-#include "var_z/codex.h"
-#include "var_z/patchwork.h"
+#include "var_z/patchwork/codex.h"
+#include "var_z/patchwork/patchwork.h"
 #include "var_z/exprtk.hpp"
 
 //var y deps

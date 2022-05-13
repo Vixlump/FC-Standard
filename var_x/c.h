@@ -52,7 +52,7 @@ void control_stream() {
           		assignment_wrap();
           		break;
       		default:
-        		error_stream();
+        		error_stream("*c->*error");
         		break;
         }
 	} loop;
@@ -155,7 +155,7 @@ void control_case() {
 			break;
 		case COREFC("_array"):
 		default:
-			error_stream();
+			error_stream("+case->*error");
 			break;
 	}
 }
@@ -214,7 +214,7 @@ void control_if_selector(T input1, uint64_t input2, T input3, vector <bool> & co
 				control_if_result.push_back(control_if_spaceship<T>(input1, input3));
 				break;
 			default:
-				error_stream();
+				error_stream("+if->*error");
 				break;
 		}
 		fc_getline();
@@ -237,7 +237,7 @@ void control_if_selector(T input1, uint64_t input2, T input3, vector <bool> & co
 							case 5:
 								break;
 							default:
-								error_stream();
+								error_stream("+if->*error");
 								break;
 						}
 					}
@@ -267,7 +267,7 @@ void control_if_selector(T input1, uint64_t input2, T input3, vector <bool> & co
 				control_if_decision = 5;
 				break;
 			default:
-				error_stream();
+				error_stream("+if->*error");
 				break;
 		}
 }
@@ -312,7 +312,7 @@ void control_if() { //c#+if|_int|n#64|==|n#64|go here|else continue
 	 			control_if_selector<uint64_t>(active_script[line-2], active_script[line-1], active_script[line], control_if_result);
 	 			break;
 	 		default:
-	 			error_stream();
+	 			error_stream("+if->*error");
 				break;
 	 	}
  	} loop;

@@ -105,7 +105,7 @@ void scan_stream() {
       #endif
       default://error trigger
         #ifdef FCS_ERROR
-        error_stream();
+        error_stream("*?->*error");
         #endif
         break;
     }

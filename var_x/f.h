@@ -41,7 +41,7 @@ void functional_stream() {
           		assignment_wrap();
           		break;
 			default:
-				error_stream();
+				error_stream("*f->*error");
 				break;
 		}
 
@@ -93,7 +93,7 @@ void functional_size_var_array(uint64_t & i) {
 			codex_store_int16(i, sizeof(string_var_array[active_script[line]]));
 			break;
 		default:
-			error_stream();
+			error_stream("+size->_var->_array->*error");
 			break;
 	}
 }
@@ -148,7 +148,7 @@ void functional_size_var() {
 			functional_size_var_array(i);
 			break;
 		default:
-			error_stream();
+			error_stream("+size->_var->*error");
 			break;
 	}
 }
@@ -188,7 +188,7 @@ void functional_size_type_max() {
 			codex_store_triple(active_script[line], numeric_limits<triple>::max());
 			break;
 		default:
-			error_stream();
+			error_stream("+size->_type->*error");
 			break;
 	}
 }
@@ -225,7 +225,7 @@ void functional_size_type_min() {
 			codex_store_triple(active_script[line], numeric_limits<triple>::min());
 			break;
 		default:
-			error_stream();
+			error_stream("+size->_type->*error");
 			break;
 	}
 }
@@ -239,7 +239,7 @@ void functional_size_type() {
 			functional_size_type_min();
 			break;
 		default:
-			error_stream();
+			error_stream("+size->_type->*error");
 			break;
 	}
 }
@@ -258,7 +258,7 @@ void functional_size() {
 			case COREFC("_ret"):
 				return;
 			default:
-				error_stream();
+				error_stream("+size->*error");
 				break;
 		}
 	} loop;

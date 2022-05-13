@@ -10,7 +10,7 @@ inline void terminate_all() {
   exit(42);
 }
 
-inline void error_handler() {
+inline void error_handler(string input_error) {
   cout<<"Error["<<"N="<<file_name<<" "<<error_trace<<"]"<<endl;
       string error_manager;
       cout<<"**Error was detected, debug mode is active, entering error manager**"<<endl;
@@ -36,7 +36,8 @@ inline void error_handler() {
           cout<<"**[_match] type string text and see if line matches hash(UIRN) info of error**"<<endl;
           cout<<"**[_script] output full text version of script**"<<endl;
           cout<<"**[_setlevel] set error level to new value**"<<endl;
-          cout<<"**[_exit] terminate program**"<<endl;
+          cout<<"**[_list]or[_error] output attached error message**"<<endl;
+          cout<<"**[_exit]or[_quit] terminate program**"<<endl;
           cout<<"**[_help] output index of error manager commands**"<<endl<<endl;
         } else if (error_manager=="_continue"||error_manager=="_skip") {
           break;
@@ -88,14 +89,16 @@ inline void error_handler() {
           cout<<"**"<<endl<<"**Error Level is now["<<error_level<<"]**"<<endl;
         } else if (error_manager=="_exit"||error_manager=="_quit") {
           terminate_all();
+        } else if (error_manager=="_list"||error_manager=="_error") {
+          cout<<"**Error["<<input_error<<"]**"<<endl;
         } else {
-          cout<<"**Error:"<<error_manager<<" is not a valid command**"<<endl;
+          cout<<"**Handler Error:"<<error_manager<<" is not a valid command**"<<endl;
           cout<<"**Type _help for a list of commands, or type _exit to terminate the program**"<<endl;
         }
       } loop;
 }
 
-void error_stream() {
+void error_stream(string input_error) {
     stringstream error_lineto_string;
     error_lineto_string << line+1;
     stringstream error_thread_labelto_string;
@@ -113,6 +116,7 @@ void error_stream() {
       }
     }
     if (error_debug_mode==true) {
-      error_handler();
+      cout<<"**Error["<<input_error<<"]**"<<endl;
+      error_handler(input_error);
     }
 }

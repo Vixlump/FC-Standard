@@ -1,0 +1,26 @@
+@#loop
+~~~*
+*i
++output
+_line
+s#press enter to patch code:
+_ret
++input
+randomname
+i*
+*~~~
++patch
+/#Anything after this line can be changed as the program is running
+*i
++output
+_line
+s#change this line and it will update in the program in real run time
+_var
+_string
+randomname
+_end
+_ret
+i*
+*c
++goto
+loop

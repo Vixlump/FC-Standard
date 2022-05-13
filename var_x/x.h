@@ -17,9 +17,12 @@ void xternal_stream() {
 			case COREFC("+python"):
 				break;
 			case COREFC("+shell"):
-				fc_getline();
-				codex_store_int32(COREFC("_shell"), system(codex_get_string(active_script[line]).c_str()));
-				break;
+				{
+					fc_getline();
+					string input = "_shell" + to_string(thread_label);
+					codex_store_int32(COREFC(input.c_str()), system(codex_get_string(active_script[line]).c_str()));
+					break;
+				}
 			//standard:
        		case COREFC("x*")://sexit
         	case COREFC("~~~*")://uexit
@@ -39,7 +42,7 @@ void xternal_stream() {
           		assignment_wrap();
           		break;
       		default:
-        		error_stream();
+        		error_stream("*x->*error");
         		break;
 		}
 	} loop;
@@ -74,12 +77,12 @@ void xternal_file_open() {
 					//quantum_var_array[active_script[line-2]][codex_get_int64(active_script[line-1])].open(active_script[line]);
 					break;
 				} else {
-					error_stream();
+					error_stream("+file->_open->_array->*error");
 				}
 				break;
 			}
 		default:
-			error_stream();
+			error_stream("+file->_open->*error");
 			break;
 	}
 }
@@ -95,7 +98,7 @@ void xternal_file_close() {
 			quantum_var[active_script[line]].close();
 			break;
 		default:
-			error_stream();
+			error_stream("+file->_close->*error");
 			break;
 	}
 }
@@ -164,7 +167,7 @@ void xternal_file() {
 			case COREFC("_ret"):
 				return;
 			default:
-				error_stream();
+				error_stream("+file->*error");
 				break;
 		}
 	} loop;

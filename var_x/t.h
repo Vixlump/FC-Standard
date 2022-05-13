@@ -45,7 +45,7 @@ void threading_stream() {
           		assignment_wrap();
           		break;
 			default:
-				error_stream();
+				error_stream("*t->*error");
 				break;
 		}
 	} loop;
