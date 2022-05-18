@@ -81,11 +81,6 @@ using namespace this_thread;
 //Comment out if you do not want to compile with aspectu
 #define ASPECTUFXTOOLS
 
-#ifdef ASPECTUFXTOOLS
-#include<SDL2/SDL.h>
-#include<curl/curl.h>
-#endif
-
 //var z deps
 //#include "var_z/int128.h"
 #include "var_z/version.h"
@@ -119,6 +114,8 @@ using namespace this_thread;
 #include "var_x/x.h"
 #include "var_x/r.h"
 #ifdef ASPECTUFXTOOLS
+#include<SDL2/SDL.h>
+#include<curl/curl.h>
 #include "var_x/a.h"
 #endif
 #include "var_x/scan.h"

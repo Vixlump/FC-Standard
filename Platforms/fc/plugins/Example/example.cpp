@@ -8,4 +8,5 @@ Example::Example() {
 
 void Example::speak() {
     qDebug() << "hello world!";
+    
 }

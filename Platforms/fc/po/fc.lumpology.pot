@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc.lumpology\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-13 19:59+0000\n"
+"POT-Creation-Date: 2022-05-14 01:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,14 +21,6 @@ msgstr ""
 msgid "FC Standard"
 msgstr ""
 
-#: ../qml/Main.qml:43
-msgid "Feedback can be viewed in the logs"
-msgstr ""
-
-#: ../qml/Main.qml:48
-msgid "Launch active.fc"
-msgstr ""
-
-#: fc.desktop.in.h:1
+#: ../qml/Main.qml:49 fc.desktop.in.h:1
 msgid "FC"
 msgstr ""

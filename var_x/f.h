@@ -153,7 +153,61 @@ void functional_size_var() {
 	}
 }
 void functional_size_array() {
-	
+	fc_getline();
+	switch (active_script[line]) {
+		case COREFC("_hash"):
+			fc_getline();
+			codex_store_int64(active_script[line], hash_var_array[active_script[line]].size());
+			break;
+		case COREFC("_int"):
+		case COREFC("_int64"):
+			fc_getline();
+			codex_store_int64(active_script[line], int64_var_array[active_script[line]].size());
+			break;
+		case COREFC("_int32"):
+			fc_getline();
+			codex_store_int64(active_script[line], int32_var_array[active_script[line]].size());
+			break;
+		case COREFC("_int16"):
+			fc_getline();
+			codex_store_int64(active_script[line], int16_var_array[active_script[line]].size());
+			break;
+		case COREFC("_int8"):
+			fc_getline();
+			codex_store_int64(active_script[line], int8_var_array[active_script[line]].size());
+			break;
+		case COREFC("_bool"):
+			fc_getline();
+			codex_store_int64(active_script[line], bool_var_array[active_script[line]].size());
+			break;
+		case COREFC("_float"):
+			fc_getline();
+			codex_store_int64(active_script[line], float_var_array[active_script[line]].size());
+			break;
+		case COREFC("_double"):
+			fc_getline();
+			codex_store_int64(active_script[line], double_var_array[active_script[line]].size());
+			break;
+		case COREFC("_triple"):
+			fc_getline();
+			codex_store_int64(active_script[line], triple_var_array[active_script[line]].size());
+			break;
+		case COREFC("_string"):
+			fc_getline();
+			codex_store_int64(active_script[line], string_var_array[active_script[line]].size());
+			break;
+		case COREFC("_quantum"):
+			fc_getline();
+			codex_store_int64(active_script[line], quantum_var_array[active_script[line]].size());
+			break;
+		case COREFC("_chart"):
+			fc_getline();
+			codex_store_int64(active_script[line], chart_var_array[active_script[line]].size());
+			break;
+		default:
+			error_stream("+size->_array->*error");
+			break;
+	}
 }
 void functional_size_type_max() {
 	fc_getline();
@@ -249,8 +303,10 @@ void functional_size() {
 		fc_getline();
 		switch (active_script[line]) {
 			case COREFC("_var"):
+				functional_size_var();
 				break;
 			case COREFC("_array"):
+
 				break;
 			case COREFC("_type"):
 				functional_size_type();

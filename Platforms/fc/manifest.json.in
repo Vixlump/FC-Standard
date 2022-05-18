@@ -1,6 +1,6 @@
 {
     "name": "fc.lumpology",
-    "description": "something, will change lator",
+    "description": "FC is an Open Source Live Patching Programming Language based on a system called Patchwork.",
     "architecture": "@CLICK_ARCH@",
     "title": "FC",
     "hooks": {
@@ -9,7 +9,7 @@
             "desktop":  "fc.desktop"
         }
     },
-    "version": "1.0.0",
+    "version": "0.0.9",
     "maintainer": "Cohen ter Heide <support@lumpology.com>",
     "framework" : "@CLICK_FRAMEWORK@"
 }

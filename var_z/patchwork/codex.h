@@ -27,10 +27,10 @@ uint64_t known_threads = 1;
 uint64_t codex_id = 0;
 
 map <uint64_t, vector<uint64_t>> fc_functions;
-
 //anything you add here needs to get added to the patchwork.h load_codex and be cleared
 thread_local vector <string> script_reader;
 thread_local vector <uint64_t> active_script;
+//#define SCRIPTFC active_script[line]
 thread_local vector <codex_function_swap> active_script_bak;
 vector <string> active_string;
 vector <int64_t> active_int64;

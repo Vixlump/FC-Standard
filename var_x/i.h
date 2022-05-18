@@ -194,19 +194,115 @@ void input_output_group() {
   } loop;
 }
 
+void input_string_get() {
+  fc_getline();
+  uint64_t name = active_script[line];
+  fc_getline();
+  uint64_t pos = codex_get_int64(active_script[line]);
+  fc_getline();
+  switch (active_script[line]) {
+    case COREFC("_string"):
+      fc_getline();
+      string_var[active_script[line]] = string_var[name][pos];
+      break;
+    case COREFC("_char"):
+    case COREFC("_int8"):
+      fc_getline();
+      int8_var[active_script[line]] = string_var[name][pos];
+      break;
+    default:
+      error_stream("+string->_get->*error");
+      break;
+  }
+
+}
+void input_string_length() {
+  fc_getline();
+  uint64_t name = active_script[line];
+  fc_getline();
+  codex_store_int64(active_script[line], codex_get_string(name).length());
+
+}
+void input_string_trunk() {
+    fc_getline();
+    uint64_t name = active_script[line];
+    string i = codex_get_string(name);
+    fc_getline();
+    string i_erase = codex_get_string(active_script[line]);
+    cout<<"hit1 ";
+    size_t pos = i.find(i_erase);
+    cout<<"hit2 ";
+    if (pos != std::string::npos)
+    {
+        cout<<"hit3 ";
+        i.erase(pos, i_erase.length());
+    }
+    cout<<"hit4 ";
+    codex_store_string(name, i);
+    cout<<"hit5 ";
+}
+void input_string_add() {
+  fc_getline();
+  switch (active_script[line]) {
+    case COREFC("_front"):
+      {
+        fc_getline();
+        uint64_t name = active_script[line];
+        fc_getline();
+        uint64_t name2 = active_script[line];
+        string i = codex_get_string(name);
+        i.insert(0, 1, codex_get_int8(name2));
+        codex_store_string(name, i);
+        break;
+      }
+    case COREFC("_back"):
+      {
+        fc_getline();
+        uint64_t name = active_script[line];
+        fc_getline();
+        uint64_t name2 = active_script[line];
+        string i = codex_get_string(name);
+        i.push_back(codex_get_int8(name2));
+        codex_store_string(name, i);
+        break;
+      }
+    default:
+      error_stream("+string->_add->*error");
+      break;
+  }
+}
+void input_string_char() {
+  fc_getline();
+  uint64_t name = active_script[line];
+  fc_getline();
+  string i = codex_get_string(active_script[line]);
+  int8_var[name] = i[0];
+}
+void input_string_find() {
+
+}
+
 void input_string() {
   do {
     fc_getline();
     switch(active_script[line]) {
       case COREFC("_get"):
+        input_string_get();
         break;
       case COREFC("_length"):
+        input_string_length();
         break;
       case COREFC("_trunk"):
+        input_string_trunk();
         break;
       case COREFC("_add"):
+        input_string_add();
         break;
-      case COREFC("_"):
+      case COREFC("_char"):
+      case COREFC("_int8"):
+        input_string_char();
+        break;
+      case COREFC("_find")://get number of chars within string, get possition of sub string within value
         break;
       case COREFC("_ret"):
         return;

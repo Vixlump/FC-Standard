@@ -121,6 +121,9 @@ void xternal_file_write() {
 			case COREFC("_ret"):
 				return;
 			case COREFC("_line"):
+				fc_getline();
+				quantum_var[name]<<codex_get_string(active_script[line])<<"\n";
+				break;
 			default:
 				fc_getline();
 				quantum_var[name]<<codex_get_string(active_script[line])<<"\n";
@@ -139,11 +142,20 @@ void xternal_file_read() {
 				getline(chart_var[name], i);
 				fc_getline();
 				codex_store_string(active_script[line], i);
+				break;
 			}
-			break;
 		case COREFC("_all"):
-
-			break;
+			{
+				fc_getline();
+				uint64_t i2 = active_script[line];
+				fc_getline();
+				uint64_t i3 = active_script[line];
+				string i5;
+				while (getline(chart_var[i2], i5)) {
+					codex_add_string_array(i3, i5);
+				}
+				break;
+			}
 		default:
 			break;
 	}
