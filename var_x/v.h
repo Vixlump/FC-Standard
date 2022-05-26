@@ -47,9 +47,6 @@ void var_stream() {
       case COREFC("*~~~")://channelswap stream
         channelswap_stream();
         break;
-      case COREFC("@*")://assignment wrap
-        assignment_wrap();
-        break;
       default:
         error_stream("*v->*error");
         break;

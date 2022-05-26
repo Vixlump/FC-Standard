@@ -205,6 +205,13 @@ void action_overloading_overload() {
 	}
 }
 
+void action_overloading_pull() {
+
+}
+void action_overloading_push() {
+	
+}
+
 void action_overloading_stream() {
 	bool action_loop = false;
 	do {
@@ -239,6 +246,10 @@ void action_overloading_stream() {
 				break;
 			case COREFC("loop*"):
 				action_loop = false;
+				break;
+			case COREFC("*pull")://_linenum
+				break;
+			case COREFC("*push")://_linenum
 				break;
 			case COREFC(""): //whitespace
 				break;

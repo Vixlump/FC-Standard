@@ -8,21 +8,53 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
   switch (script_reader[input][hash_location-1]) {
     case 'n':
     case '6'://int64
-      active_int64.push_back(stoll(script_reinterpretor.c_str()));
+      if (script_reinterpretor[0]=='b') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int64.push_back(stoll(script_reinterpretor.c_str(), nullptr, 2));
+      } else if (script_reinterpretor[0]=='x') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int64.push_back(stoll(script_reinterpretor.c_str(), nullptr, 16));
+      } else {
+        active_int64.push_back(stoll(script_reinterpretor.c_str()));
+      }
       active_script.push_back(active_int64.size()-1);
       break;
     case 'l':
     case '3'://int32
-      active_int32.push_back(stol(script_reinterpretor.c_str()));
+      if (script_reinterpretor[0]=='b') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int32.push_back(stol(script_reinterpretor.c_str(), nullptr, 2));
+      } else if (script_reinterpretor[0]=='x') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int32.push_back(stol(script_reinterpretor.c_str(), nullptr, 16));
+      } else {
+        active_int32.push_back(stol(script_reinterpretor.c_str()));
+      }
       active_script.push_back(active_int32.size()-1);
       break;
     case 'i':
     case '1'://int16
-      active_int16.push_back(stoi(script_reinterpretor.c_str()));
+      if (script_reinterpretor[0]=='b') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int16.push_back(stoi(script_reinterpretor.c_str(), nullptr, 2));
+      } else if (script_reinterpretor[0]=='x') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int16.push_back(stoi(script_reinterpretor.c_str(), nullptr, 16));
+      } else {
+        active_int16.push_back(stoi(script_reinterpretor.c_str()));
+      }
       active_script.push_back(active_int16.size()-1);
       break;
     case '8'://int8
-      active_int8.push_back(stoi(script_reinterpretor.c_str()));
+      if (script_reinterpretor[0]=='b') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int8.push_back(stoi(script_reinterpretor.c_str(), nullptr, 2));
+      } else if (script_reinterpretor[0]=='x') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_int8.push_back(stoi(script_reinterpretor.c_str(), nullptr, 16));
+      } else {
+        active_int8.push_back(stoi(script_reinterpretor.c_str()));
+      }
       active_script.push_back(active_int8.size()-1);
       break;
     case 'b'://bool
@@ -47,7 +79,15 @@ void convert_codex_to_hash_var(uint64_t & input, uint8_t hash_location, bool & i
       active_script.push_back(active_string.size()-1);
       break;
     case '#':
-      active_script.push_back(stoull(script_reinterpretor.c_str()));
+      if (script_reinterpretor[0]=='b') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_script.push_back(stoull(script_reinterpretor.c_str(), nullptr, 2));
+      } else if (script_reinterpretor[0]=='x') {
+        script_reinterpretor.erase(script_reinterpretor.begin());
+        active_script.push_back(stoull(script_reinterpretor.c_str(), nullptr, 16));
+      } else {
+        active_script.push_back(stoull(script_reinterpretor.c_str()));
+      }
       break;
     case '@'://assignment
       assignment new_assignment_point;

@@ -5,6 +5,7 @@ void threading_unite();
 void threading_detach();
 void threading_adapt();
 void threading_multi();
+void threading_signal();
 vector <thread> var_thread;
 
 void threading_stream() {
@@ -26,6 +27,9 @@ void threading_stream() {
 			case COREFC("+multi"):
 				threading_multi();
 				break;
+			case COREFC("+signal"):
+				threading_signal();
+				break;
 			//standard:
        		case COREFC("t*")://sexit
         	case COREFC("~~~*")://uexit
@@ -41,14 +45,15 @@ void threading_stream() {
         	case COREFC("*~~~")://channelswap stream
           		channelswap_stream();
           		break;
-          	case COREFC("@*")://assignment wrap
-          		assignment_wrap();
-          		break;
 			default:
 				error_stream("*t->*error");
 				break;
 		}
 	} loop;
+}
+
+void threading_signal() {
+
 }
 
 void threading_thread_new(vector <uint64_t> input) {

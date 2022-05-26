@@ -113,6 +113,7 @@ using namespace this_thread;
 #include "var_x/i.h"
 #include "var_x/x.h"
 #include "var_x/r.h"
+#include "var_x/o.h"
 #ifdef ASPECTUFXTOOLS
 #include<SDL2/SDL.h>
 #include<curl/curl.h>

@@ -93,14 +93,14 @@ void scan_stream() {
         reserved_stream();
         break;
       #endif
+      #ifdef FCS_O
+      case COREFC("*o")://optimization stream
+        optimization_stream();
+        break;
+      #endif
       #ifdef FCS_I
       case COREFC("*i")://input stream
         input_stream();
-        break;
-      #endif
-      #ifdef FCS_ASIGN
-      case COREFC("@*")://assignment wrap
-        assignment_wrap();
         break;
       #endif
       default://error trigger

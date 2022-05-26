@@ -4,8 +4,15 @@ _line
 s#Before
 _ret
 i*
+*o
++blotch
+_whitespace
+_ret
+o*
+
 &#testappendpatch2
 *i
+
 +output
 _line
 s#After

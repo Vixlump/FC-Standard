@@ -9,6 +9,10 @@ void functional_hash() {
 }
 void functional_size();
 
+void functional_sleep() {
+
+}
+
 void functional_stream() {
 	do {
 		fc_getline();
@@ -21,6 +25,9 @@ void functional_stream() {
 				break;
 			case COREFC("+size"):
 				functional_size();
+				break;
+			case COREFC("+sleep"):
+				functional_sleep();
 				break;
 			//standard:
        		case COREFC("f*")://sexit
@@ -36,9 +43,6 @@ void functional_stream() {
           		break;
         	case COREFC("*~~~")://channelswap stream
           		channelswap_stream();
-          		break;
-          	case COREFC("@*")://assignment wrap
-          		assignment_wrap();
           		break;
 			default:
 				error_stream("*f->*error");

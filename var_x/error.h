@@ -91,6 +91,10 @@ inline void error_handler(string input_error) {
           terminate_all();
         } else if (error_manager=="_list"||error_manager=="_error") {
           cout<<"**Error["<<input_error<<"]**"<<endl;
+        } else if (error_manager=="_patch") {
+          uint64_t i3 = line;
+          load_codex(file_name);
+          line = i3;
         } else {
           cout<<"**Handler Error:"<<error_manager<<" is not a valid command**"<<endl;
           cout<<"**Type _help for a list of commands, or type _exit to terminate the program**"<<endl;

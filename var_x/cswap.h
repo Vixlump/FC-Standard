@@ -18,6 +18,13 @@ void channelswap_stream() {
         } loop;
         break;
       }
+    case COREFC("+virtual"):
+      {
+        fc_getline();
+        active_script = hash_var_array[active_script[line]];
+        line = phantom_line;
+        break;
+      }
     case COREFC("+patch"):
       {
         uint64_t i = line;

@@ -43,9 +43,6 @@ void input_stream() {
       case COREFC("*~~~")://channelswap stream
         channelswap_stream();
         break;
-      case COREFC("@*")://assignment wrap
-        assignment_wrap();
-        break;
       default://error trigger
         error_stream("*i->*error");
         break;
@@ -282,7 +279,7 @@ void input_string_find() {
 
 }
 
-void input_string() {
+void input_string() {//need to add maker lower and make upercase and if lower or uppercase
   do {
     fc_getline();
     switch(active_script[line]) {
@@ -292,8 +289,8 @@ void input_string() {
       case COREFC("_length"):
         input_string_length();
         break;
-      case COREFC("_trunk"):
-        input_string_trunk();
+      case COREFC("_trunc"):
+        input_string_trunk();//might still be broken
         break;
       case COREFC("_add"):
         input_string_add();

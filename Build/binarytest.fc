@@ -1,0 +1,15 @@
+*v
++store
+_int
+value
+n#xfffff
+_ret
+v*
+*i
++output
+_var
+_int
+value
+_end
+_ret
+i*

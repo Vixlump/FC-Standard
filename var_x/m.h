@@ -15,6 +15,7 @@ enum mathstream {
 void math_function();
 void math_graph();
 void math_cal();
+void math_random();
 void math_set();
 
 void math_stream() {
@@ -32,7 +33,10 @@ void math_stream() {
 			case COREFC("+calculate")://preforms one mathematical function
 				math_cal();
 				break;
-			case COREFC("+set"):
+			case COREFC("+random"):
+				math_random();
+				break;
+			case COREFC("+set")://round, floor, ceil, trunc
 				math_set();
 				break;
 			//standard:
@@ -49,9 +53,6 @@ void math_stream() {
           		break;
         	case COREFC("*~~~")://channelswap stream
           		channelswap_stream();
-          		break;
-          	case COREFC("@*")://assignment wrap
-          		assignment_wrap();
           		break;
       		default:
         		error_stream("*m->*error");
@@ -208,6 +209,42 @@ void math_function() {
 			break;
 	}
 }
+
+void math_random_gen() {
+
+}
+void math_random_alt() {
+
+}
+void math_random_noise() {
+
+}
+void math_random_range() {
+
+}
+
+
+void math_random() {
+	do {
+		fc_getline();
+		switch (active_script[line]) {
+			case COREFC("_gen"):
+				break;
+			case COREFC("_alt"):
+				break;
+			case COREFC("_noise"):
+				break;
+			case COREFC("_range"):
+				break;
+			case COREFC("_ret"):
+				return;
+			default:
+				error_stream("+random->*error");
+				break;
+		}
+	} loop;
+}
+
 void math_graph() {
 
 }
