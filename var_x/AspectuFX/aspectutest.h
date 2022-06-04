@@ -1,5 +1,5 @@
 void AspectuTest() {
-	SDL_Window *window = NULL;                    // Declare a pointer
+	/*SDL_Window *window = NULL;                    // Declare a pointer
 	SDL_Renderer *renderer = NULL;
     SDL_Init(SDL_INIT_EVERYTHING);              // Initialize SDL2
 
@@ -31,4 +31,5 @@ void AspectuTest() {
 
     // Clean up
     SDL_Quit();
+    */
 }

@@ -3,9 +3,9 @@
 #include "AspectuFX/aspectufx.h"
 //Aspectu Dependancies
 struct aspectu_type_system {
-	SDL_Window * aspectu_window = NULL;
-	SDL_Renderer * aspectu_render = NULL;
-	SDL_Surface * aspectu_surface = NULL;
+	//SDL_Window * aspectu_window = NULL;
+	//SDL_Renderer * aspectu_render = NULL;
+	//SDL_Surface * aspectu_surface = NULL;
 };
 
 map <uint64_t, aspectu_type_system> aspectu_def_window;
