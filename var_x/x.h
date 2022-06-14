@@ -3,6 +3,7 @@
 
 void xternal_file();
 void xternal_address();
+void xternal_web();
 
 void xternal_stream() {
 	do {
@@ -23,6 +24,11 @@ void xternal_stream() {
 					codex_store_int32(COREFC(input.c_str()), system(codex_get_string(active_script[line]).c_str()));
 					break;
 				}
+			case COREFC("+web"):
+				#ifdef ASPECTUFXTOOLS
+				xternal_web();
+				#endif
+				break;
 			//standard:
        		case COREFC("x*")://sexit
         	case COREFC("~~~*")://uexit
@@ -34,6 +40,8 @@ void xternal_stream() {
           		debug_point();
           		break;
         	case COREFC("")://whitespace
+        	case COREFC("*nothing")://do nothing
+          		fc_nothing();
           		break;
         	case COREFC("*~~~")://channelswap stream
           		channelswap_stream();
@@ -45,18 +53,43 @@ void xternal_stream() {
 	} loop;
 }
 
+#ifdef ASPECTUFXTOOLS
+
+void xternal_web_download() {
+
+}
+
+void xternal_web() {
+	do {
+		fc_getline();
+		switch (active_script[line]) {
+			case COREFC("_download"):
+				xternal_web_download();
+				break;
+			default:
+				error_stream("+web->*error");
+				break;
+		}
+	} loop;
+}
+
+#endif
+
 void xternal_file_open() {
+	uint64_t input;
 	fc_getline();
 	switch (active_script[line]) {
 		case COREFC("_chart"):
 			fc_getline();
+			input = active_script[line];
 			fc_getline();
-			chart_var[active_script[line-1]].open(codex_get_string(active_script[line]));
+			chart_var[input].open(codex_get_string(active_script[line]));
 			break;
 		case COREFC("_quantum"):
 			fc_getline();
+			input = active_script[line];
 			fc_getline();
-			quantum_var[active_script[line-1]].open(codex_get_string(active_script[line]));
+			quantum_var[input].open(codex_get_string(active_script[line]));
 			break;
 		case COREFC("_array"):
 			{

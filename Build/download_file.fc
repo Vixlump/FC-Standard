@@ -1,0 +1,15 @@
+/#Download file from internet
+*v
++store
+_string
+url-input
+s#http://spacetime.lumpology.com/index.html
+_ret
+v*
+*x
++file
+_open
+url-output
+s#spacetime_index.html
+_ret
+

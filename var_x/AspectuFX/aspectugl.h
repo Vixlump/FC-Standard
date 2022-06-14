@@ -1,3 +1,5 @@
+map<uint64_t, vector<uint64_t>> buffer_render_var;
+
 void AspectuGL() {
 	do {
 		fc_getline();

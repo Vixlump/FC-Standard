@@ -79,6 +79,8 @@ void scan_stream() {
         break;
       #endif
       case COREFC("")://whitespace
+      case COREFC("*nothing")://whitespace
+        fc_nothing();
         break;
       #ifdef FCS_CSWAP
       case COREFC("*~~~")://channel swap
