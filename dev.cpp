@@ -98,6 +98,17 @@ using namespace this_thread;
 //math parcer
 //#include "fparser.hh"
 
+//non Standard C++ Dependancies
+#ifdef ASPECTUFXTOOLS
+//#include<SDL2/SDL.h>
+#include "var_z/imgui/imgui.h"
+#include "var_z/imgui/imgui_impl_glut.h"
+#include "var_z/imgui/imgui_impl_opengl3.h"
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#include <curl/curl.h>
+#endif
+
 //var x deps
 #include "var_x/error.h"
 #include "var_x/debug.h"
@@ -115,13 +126,6 @@ using namespace this_thread;
 #include "var_x/r.h"
 #include "var_x/o.h"
 #ifdef ASPECTUFXTOOLS
-//#include<SDL2/SDL.h>
-#include "var_z/imgui/imgui.h"
-#include "var_z/imgui/imgui_impl_glut.h"
-#include "var_z/imgui/imgui_impl_opengl3.h"
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#include <curl/curl.h>
 #include "var_x/a.h"
 #endif
 #include "var_x/scan.h"

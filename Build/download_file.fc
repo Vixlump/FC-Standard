@@ -1,15 +1,19 @@
 /#Download file from internet
-*v
-+store
-_string
-url-input
-s#http://spacetime.lumpology.com/index.html
-_ret
-v*
 *x
 +file
 _open
+_quantum
 url-output
 s#spacetime_index.html
 _ret
-
++web
+_download
+s#https://spacetime.lumpology.com/index.html
+url-output
+_ret
++file
+_close
+_quantum
+url-output
+_ret
+x*

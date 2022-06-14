@@ -79,7 +79,7 @@ void scan_stream() {
         break;
       #endif
       case COREFC("")://whitespace
-      case COREFC("*nothing")://whitespace
+      case COREFC("*null")://whitespace
         fc_nothing();
         break;
       #ifdef FCS_CSWAP

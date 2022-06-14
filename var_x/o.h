@@ -33,7 +33,7 @@ void optimization_stream() {
         		debug_point();
         		break;
      		case COREFC("")://whitespace
-     		case COREFC("*nothing")://do nothing
+     		case COREFC("*null")://do nothing
           		fc_nothing();
         		break;
       		case COREFC("*~~~")://channelswap stream

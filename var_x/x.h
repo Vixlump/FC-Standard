@@ -40,7 +40,7 @@ void xternal_stream() {
           		debug_point();
           		break;
         	case COREFC("")://whitespace
-        	case COREFC("*nothing")://do nothing
+        	case COREFC("*null")://do nothing
           		fc_nothing();
           		break;
         	case COREFC("*~~~")://channelswap stream
@@ -54,9 +54,28 @@ void xternal_stream() {
 }
 
 #ifdef ASPECTUFXTOOLS
+size_t xternal_web_download_writedata(char *ptr, size_t size, size_t nmemb, void *userdata) {
+    std::ofstream *out = static_cast<std::ofstream *>(userdata);
+    size_t nbytes = size * nmemb;
+    out->write(ptr, nbytes);
+    return nbytes;
+}
 
 void xternal_web_download() {
-
+	fc_getline();
+	string input = codex_get_string(active_script[line]);
+	fc_getline();
+	uint64_t input2 = active_script[line];
+	CURL *curl = NULL;
+	CURLcode res;
+	curl = curl_easy_init();
+	if (curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, input.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, xternal_web_download_writedata);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &quantum_var[input2]);
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+	}
 }
 
 void xternal_web() {
@@ -66,6 +85,8 @@ void xternal_web() {
 			case COREFC("_download"):
 				xternal_web_download();
 				break;
+			case COREFC("_ret"):
+				return;
 			default:
 				error_stream("+web->*error");
 				break;
